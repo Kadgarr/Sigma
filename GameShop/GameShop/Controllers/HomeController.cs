@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GameShop.Models;
 
+
 namespace GameShop.Controllers
 {
     public class HomeController : Controller
@@ -41,9 +42,9 @@ namespace GameShop.Controllers
             }
 
 
-            TempData["msg"] = "<script>alert('Запись была успешно добавлена!');</script>";
+            ViewData["Message"] = "Запись '"+ IdDeveloper+" "+NameOfDeveloper+" "+LinkToTheWebSite+"' была успещно добавлена!";
 
-            return Content(IdDeveloper + " "+ NameOfDeveloper + " "+ LinkToTheWebSite);
+            return View();
         }
 
 

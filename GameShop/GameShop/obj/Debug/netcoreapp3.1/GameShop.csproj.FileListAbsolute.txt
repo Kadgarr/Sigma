@@ -87,3 +87,4 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GameShop\GameShop\obj\Debug\netcoreapp3.
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GameShop\GameShop\obj\Debug\netcoreapp3.1\GameShop.pdb
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GameShop\GameShop\obj\Debug\netcoreapp3.1\GameShop.genruntimeconfig.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GameShop\GameShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddDeveloper.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GameShop\GameShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Message.cshtml.g.cs

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GameShop.Models.Developer>
 @{
-    //ViewData["Title"] = "Список разработчиков";
-    Layout = null;
+    ViewData["Title"] = "Список разработчиков";
+   
 }
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 </head>
 <body>
     <h3> Список разработчиков </h3>
-    <table>
+    <table class="table-condensed">
         <tr>
             <td> Id разработчика</td>
             <td> Название кампании</td>
@@ -27,7 +27,7 @@
         }
          
         
-    </table>
+    </table class="table-condensed">
     
     <a href="~/Home/AddDeveloper" class="navbar-brand">Добавить разработчика</a>
     

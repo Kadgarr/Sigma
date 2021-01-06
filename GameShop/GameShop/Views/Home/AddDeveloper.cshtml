@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "Список добавление разработчиков";
 }
 
 <!DOCTYPE html>
@@ -12,23 +12,35 @@
     <div>
         <h3>Форма добавления разработчика</h3>
         <p>Для добавления разработчика заполните следующие поля:</p>
-        <form method="post">
-            <table>
-                <tr>
-                    <td>ID разработчика:</td>
-                    <td><input type="text" value="@ViewBag.IdDeveloper" name="IdDeveloper" /> </td>
-                </tr>
-                <tr>
-                    <td>Название разработчика:</td>
-                    <td><input type="text" name="NameOfDeveloper" /> </td>
-                </tr>
-                <tr>
-                    <td>Ссылка на веб сайт:</td>
-                    <td><input type="text" name="LinkToTheWebSite" /></td>
-                </tr>
-                <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
-            </table>
+        <form method="post" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="IdDeveloper" class="col-md-2 control-label"> ID разработчика:</label>
+                <div class="col-md-4">
+                    <input type="text" name="IdDeveloper" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="IdDeveloper" class="col-md-2 control-label">  Название разработчика:</label>
+                <div class="col-md-4">
+                    <input type="text" name="NameOfDeveloper" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="IdDeveloper" class="col-md-2 control-label"> Ссылка на веб сайт:</label>
+                <div class="col-md-4">
+                    <input type="text" name="LinkToTheWebSite" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="button" class="btn btn-default" value="Добавить" />
+                </div>
+            </div>
+
         </form>
+        <h3>@ViewData["Message"]</h3>
+      
+        
     </div>
 </body>
 </html>
