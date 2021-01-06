@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GameShop.Models.Developer>
+@{
+    //ViewData["Title"] = "Список разработчиков";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Магазин компьютерных игр</title>
+</head>
+<body>
+    <h3> Список разработчиков </h3>
+    <table>
+        <tr>
+            <td> Id разработчика</td>
+            <td> Название кампании</td>
+            <td> Ссылка на сайт</td>
+        </tr>
+        @foreach (var developer in Model)
+        {
+            <tr>
+                <td> @developer.IdDeveloper</td>
+                <td> @developer.NameOfDeveloper</td>
+                <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
+            </tr>
+
+        }
+         
+        
+    </table>
+    
+    <a href="~/Home/AddDeveloper" class="navbar-brand">Добавить разработчика</a>
+    
+
+</body>
+</html>

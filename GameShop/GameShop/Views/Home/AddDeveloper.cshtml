@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление информации о разработчике</title>
+</head>
+<body>
+    <div>
+        <h3>Форма добавления разработчика</h3>
+        <p>Для добавления разработчика заполните следующие поля:</p>
+        <form method="post">
+            <table>
+                <tr>
+                    <td>ID разработчика:</td>
+                    <td><input type="text" value="@ViewBag.IdDeveloper" name="IdDeveloper" /> </td>
+                </tr>
+                <tr>
+                    <td>Название разработчика:</td>
+                    <td><input type="text" name="NameOfDeveloper" /> </td>
+                </tr>
+                <tr>
+                    <td>Ссылка на веб сайт:</td>
+                    <td><input type="text" name="LinkToTheWebSite" /></td>
+                </tr>
+                <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
