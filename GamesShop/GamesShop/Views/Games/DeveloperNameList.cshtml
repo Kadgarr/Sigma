@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GamesShop.Models.Developer>
+
+
+@{
+    ViewData["Title"] = "Библиотека игр";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+        
+</head>
+<body>
+    @foreach (var developer in Model)
+    {
+    <label>developer.NameOfDeveloper;</label>
+    }
+</body>
+</html>

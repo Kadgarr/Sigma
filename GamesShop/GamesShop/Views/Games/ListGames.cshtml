@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GamesShop.Models.Games>
+
+
+@{
+    ViewData["Title"] = "Библиотека игр";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Магазин компьютерных игр</title>
+</head>
+<body>
+    <h3> Список игр </h3>
+    <table class="table-condensed">
+        <tr>
+            <td></td>
+            <td> Название игры:</td>
+            <td> Дата Релиза:</td>
+            <td>Жанр:</td>
+            <td>Разработчик:</td>
+            <td>Издатель:</td>
+        </tr>
+        @foreach (var games in Model)
+        {
+    <tr>
+        <td><img src="@games.Image" alt="games.IdDeveloperNavigation.NameOfDeveloper"></td>
+        <td> @games.NameOfGame</td>
+        <td>@games.DateOfRelease </td>
+        <td>@await Html.PartialAsync("Name", new List<int> { games.IdGenre})</td>
+        <td> @games.IdDeveloperNavigation.NameOfDeveloper</td>
+        <td>@games.IdPublisherNavigation.NameOfIzdatel</td>
+        <td><a asp-action="" asp-controller="" asp-route-id="">Редактировать</a> </td>
+        <td>
+            <form method="post">
+                <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@games.IdDeveloper">Удалить</button>
+            </form>
+        </td>
+
+    </tr>
+
+        }
+
+
+    </table>
+
+    <a href="~/Home/AddDeveloper" class="navbar-brand">Добавить разработчика</a>
+    <h3>@ViewData["MessageDelete"]</h3>
+
+</body>
+</html>

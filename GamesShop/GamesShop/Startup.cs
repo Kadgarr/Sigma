@@ -31,6 +31,8 @@ namespace GamesShop
             
             services.AddIdentity<User, IdentityRole>()
         .AddEntityFrameworkStores<GamesShopDB_Context>();
+
+
             services.AddControllersWithViews();
         }
 

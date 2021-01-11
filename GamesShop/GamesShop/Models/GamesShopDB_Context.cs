@@ -6,10 +6,15 @@ namespace GamesShop.Models
 {
     public class GamesShopDB_Context: IdentityDbContext<User>
     {
+        public GamesShopDB_Context()
+        {
+
+        }
+
         public GamesShopDB_Context(DbContextOptions<GamesShopDB_Context> options)
             : base(options)
         {
-            Database.EnsureCreated();
+           
         }
 
         public virtual DbSet<ContentOfOrder> ContentOfOrders { get; set; }

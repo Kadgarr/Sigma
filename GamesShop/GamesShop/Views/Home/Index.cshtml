@@ -1,8 +1,46 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+@model IEnumerable<GamesShop.Models.Developer>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@{
+    ViewData["Title"] = "Список разработчиков";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Магазин компьютерных игр</title>
+</head>
+<body>
+    <h3> Список разработчиков </h3>
+    <table class="table-condensed">
+        <tr>
+            <td> Id разработчика</td>
+            <td> Название кампании</td>
+            <td> Ссылка на сайт</td>
+        </tr>
+        @foreach (var developer in Model)
+        {
+    <tr>
+        <td> @developer.IdDeveloper</td>
+        <td> @developer.NameOfDeveloper</td>
+        <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
+        <td><a asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
+        <td>
+            <form method="post">
+                <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
+            </form>       
+        </td>
+         
+    </tr>
+
+        }
+
+
+    </table>
+
+    <a href="~/Home/AddDeveloper" class="navbar-brand">Добавить разработчика</a>
+    <h3>@ViewData["MessageDelete"]</h3>
+
+</body>
+</html>

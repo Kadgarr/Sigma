@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GameShop.Models.ViewModels
+namespace GamesShop.Models.ViewModels
 {
     public class RegisterViewModel
     {

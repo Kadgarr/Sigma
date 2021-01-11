@@ -18,12 +18,7 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.TagHelpers.output.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.RazorCoreGenerate.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.RazorTargetAssemblyInfo.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.RazorTargetAssemblyInfo.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.Views.pdb
@@ -82,3 +77,11 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.csproj.CoreCompileInputs.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\AddGames.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddDeveloper.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditDeveloper.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\ListGames.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\DeveloperNameList.cshtml.g.cs
