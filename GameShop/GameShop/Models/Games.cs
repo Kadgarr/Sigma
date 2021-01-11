@@ -7,6 +7,7 @@ namespace GameShop.Models
     {
         public int IdGame { get; set; }
         public string NameOfGame { get; set; }
+        public string Image { get; set; }
         public DateTime? DateOfRelease { get; set; }
         public decimal? Cost { get; set; }
         public int? CountOfKeys { get; set; }

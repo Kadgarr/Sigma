@@ -1,0 +1,52 @@
+﻿@model GameShop.Models.Developer
+@{
+    ViewData["Title"] = "Редактирование записи разработчика";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование информации о разработчике</title>
+</head>
+<body>
+    <div>
+        <h3>Форма редактирования разработчика @*@Model.NameOfDeveloper*@</h3>
+
+
+        <form method="post">
+            <div asp-validation-summary="All">
+                <div>
+                    <label asp-for="IdDeveloper">  Id разработчика:</label>
+                    <div class="col-md-4">
+                        <input asp-for="IdDeveloper" readonly="readonly" />
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="NameOfDeveloper">  Название разработчика:</label>
+                    <div class="col-md-4">
+                        <input asp-for="NameOfDeveloper" />
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="LinkToTheWebSite"> Ссылка на веб сайт:</label>
+                    <div class="col-md-4">
+                        <input asp-for="LinkToTheWebSite" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <input type="submit" id="button" value="Применить изменения" />
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+        <h3>@ViewData["MessageEdit"]</h3>
+      
+
+
+    </div>
+</body>
+</html>

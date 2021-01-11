@@ -31,6 +31,10 @@ namespace GameShop
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ShopGamesDBContext>(options => options.UseSqlServer(connection));
+
+            services.AddIdentity<Pokupatel, IdentityRole>()
+                 .AddEntityFrameworkStores<ShopGamesDBContext>();
+
             services.AddControllersWithViews();
         }
 
@@ -52,6 +56,7 @@ namespace GameShop
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

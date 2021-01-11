@@ -1,7 +1,10 @@
-﻿@model IEnumerable<GameShop.Models.Developer>
+﻿
+@model IEnumerable<GameShop.Models.Developer>
+
+
 @{
     ViewData["Title"] = "Список разработчиков";
-   
+
 }
 <!DOCTYPE html>
 <html>
@@ -18,19 +21,26 @@
         </tr>
         @foreach (var developer in Model)
         {
-            <tr>
-                <td> @developer.IdDeveloper</td>
-                <td> @developer.NameOfDeveloper</td>
-                <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
-            </tr>
+    <tr>
+        <td> @developer.IdDeveloper</td>
+        <td> @developer.NameOfDeveloper</td>
+        <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
+        <td><a asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
+        <td>
+            <form method="post">
+                <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
+            </form>       
+        </td>
+         
+    </tr>
 
         }
-         
-        
-    </table class="table-condensed">
-    
+
+
+    </table>
+
     <a href="~/Home/AddDeveloper" class="navbar-brand">Добавить разработчика</a>
-    
+    <h3>@ViewData["MessageDelete"]</h3>
 
 </body>
 </html>

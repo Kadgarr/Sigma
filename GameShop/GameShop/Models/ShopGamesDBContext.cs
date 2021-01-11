@@ -19,10 +19,10 @@ namespace GameShop.Models
         public virtual DbSet<Developer> Developer { get; set; }
         public virtual DbSet<Feedbacks> Feedback { get; set; }
         public virtual DbSet<Games> Games { get; set; }
-        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Pokupatel> Pokupatels { get; set; }
-        public virtual DbSet<Publisher> Publishers { get; set; }
+        public virtual DbSet<Pokupatel> Pokupatel { get; set; }
+        public virtual DbSet<Publisher> Publisher { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -196,10 +196,10 @@ namespace GameShop.Models
 
             modelBuilder.Entity<Pokupatel>(entity =>
             {
-                entity.HasKey(e => e.IdPokupatel)
+                entity.HasKey(e => e.ID_Pokupatel)
                     .HasName("PK__Pokupate__D1376FD923B9C259");
 
-                entity.Property(e => e.IdPokupatel)
+                entity.Property(e => e.ID_Pokupatel)
                     .HasColumnName("ID_Pokupatel")
                     .ValueGeneratedNever();
 

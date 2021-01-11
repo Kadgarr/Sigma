@@ -1,0 +1,88 @@
+﻿@model GameShop.Models.SomeModels
+@{
+    ViewData["Title"] = "Добавление игр";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление информации о игре</title>
+</head>
+<body>
+    <h3>Форма добавления игры</h3>
+    <form method="post">
+
+        <div>
+
+            <div>
+                <input type="hidden" name="IdGame" />
+            </div>
+        </div>
+        <div>
+            <label for="NameOfGame">  Название игры:</label>
+            <div>
+                <input type="text" name="NameOfGame" />
+            </div>
+        </div>
+        <div>
+            <label for="Image"> Ссылка на изображение:</label>
+            <div>
+                <input type="text" name="Image" />
+            </div>
+        </div>
+        <div>
+            <label for="DateOfRelease">  Дата релиза:</label>
+            <div>
+                <input type="date" name="DateOfRelease" />
+            </div>
+        </div>
+        <div>
+            <label for="Cost">  Цена игры:</label>
+            <div>
+                <input type="text" name="Cost" />
+            </div>
+        </div>
+        <div>
+            <label for="CountOfKeys">  Количество ключей:</label>
+            <div>
+                <input type="text" name="CountOfKeys" />
+            </div>
+        </div>
+        @*<div>
+            @await Html.PartialAsync("DeveloperList");
+        </div>*@
+        <label for="IdDeveloper">Укажите разработчика:</label> <br />
+        <select name="IdDeveloper">
+            @foreach (var developer in Model.Developer)
+            {
+                <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
+
+            }
+
+        </select><br />
+        <label for="IdGenre">Укажите жанр:</label> <br />
+        <select name="IdGenre">
+            @foreach (var genre in Model.Genre)
+            {
+                <option value="@genre.IdGenre">@genre.NameOfGenre</option>
+            }
+
+        </select><br />
+        <label for="IdPublisher">Укажите издателя:</label> <br />
+        <select name="IdPublisher">
+            @foreach (var publisher in Model.Publisher)
+            {
+                <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
+
+            }
+
+        </select>
+        <div>
+            <div>
+                <input type="submit" id="button" class="btn btn-default" value="Добавить" />
+            </div>
+        </div>
+        <h3>@ViewData["MessageAddGames"]</h3>
+    </form>
+
+</body>
+</html>

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 namespace GameShop.Models
 {
-    public partial class Pokupatel
+    public partial class Pokupatel: IdentityUser
     {
         public Pokupatel()
         {
@@ -11,9 +12,10 @@ namespace GameShop.Models
             Orders = new HashSet<Orders>();
         }
 
-        public int IdPokupatel { get; set; }
+        public int ID_Pokupatel { get; set; }
         public string Fio { get; set; }
         public int? IdCard { get; set; }
+   
         public string Email { get; set; }
 
         public virtual ICollection<Feedbacks> Feedbacks { get; set; }
