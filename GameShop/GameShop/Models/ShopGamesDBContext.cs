@@ -1,13 +1,16 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace GameShop.Models
+namespace GamesShop.Models
 {
     public partial class ShopGamesDBContext : DbContext
     {
         public ShopGamesDBContext()
         {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         public ShopGamesDBContext(DbContextOptions<ShopGamesDBContext> options)
@@ -93,7 +96,7 @@ namespace GameShop.Models
 
                 entity.Property(e => e.IdGame).HasColumnName("Id_game");
 
-                entity.Property(e => e.IdPokupatel).HasColumnName("Id_pokupatel");
+                entity.Property(e => e.).HasColumnName("Id_pokupatel");
 
                 entity.Property(e => e.TextOfFeedback)
                     .HasColumnName("Text_of_feedback")
@@ -232,6 +235,9 @@ namespace GameShop.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

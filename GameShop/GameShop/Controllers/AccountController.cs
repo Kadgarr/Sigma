@@ -29,7 +29,7 @@ namespace GameShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                Pokupatel user = new Pokupatel { Email = model.Email, UserName =model.Email, Fio=model.Fio,  IdCard = int.Parse(model.ID_Card), };
+                Pokupatel user = new Pokupatel { Email = model.Email, UserName = model.Email, Fio = model.Fio, IdCard = int.Parse(model.ID_Card), };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

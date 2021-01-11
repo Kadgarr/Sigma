@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GameShop.Models
 {
-    public partial class Pokupatel: IdentityUser
+    public partial class Pokupatel:IdentityUser
     {
         public Pokupatel()
         {
