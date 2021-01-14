@@ -1,0 +1,21 @@
+﻿@model GamesShop.Models.ViewModels.EditUserViewModel
+@{
+    ViewBag.Title = "Редактирование пользователя";
+}
+<form method="post">
+    <div asp-validation-summary="All" ></div>
+    <div >
+        <input type="hidden" asp-for="Id" />
+    </div>
+    <div >
+        <label asp-for="Email" >Email</label>
+        <input type="text" asp-for="Email"  />
+    </div>
+    <div >
+        <label asp-for="Year" >Дата рождения</label>
+        <input type="date" asp-for="Year"  />
+    </div>
+    <div >
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

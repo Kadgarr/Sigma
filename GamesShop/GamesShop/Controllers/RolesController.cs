@@ -6,6 +6,7 @@ using GamesShop.Models;
 using GamesShop.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesShop.Controllers
 {
@@ -13,15 +14,70 @@ namespace GamesShop.Controllers
     {
         RoleManager<IdentityRole> _roleManager;
         UserManager<User> _userManager;
-       
+        GamesShopDB_Context db = new GamesShopDB_Context();
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         } 
         public IActionResult IndexRoles() => View(_roleManager.Roles.ToList());
+        public IActionResult UserList() => View(_userManager.Users.ToList());
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Year = user.Year };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByIdAsync(model.Id);
+                if (user != null)
+                {
+                    user.Email = model.Email;
+                    user.UserName = model.Email;
+                    user.Year = model.Year;
+
+                    var result = await _userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("UserList");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("UserList");
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            User user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+            }
+            return RedirectToAction("UserList");
+        }
 
         public IActionResult CreateRoles() => View();
+
         [HttpPost]
         public async Task<IActionResult> CreateRoles(string name)
         {
