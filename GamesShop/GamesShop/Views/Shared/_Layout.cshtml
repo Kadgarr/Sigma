@@ -7,36 +7,63 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/styles_main.css" />
 </head>
 <body>
+    Добро пожаловать на сайт @User.Identity.Name !
     <!--меню-->
     <header>
-    <nav >
-        <ul class="topmenu">
-            <li class="submenu-link">
-                <a href="~/Home/Index">Разработчики</a>
-                <ul class="submenu">
-                    <li><a href="~/Home/Index">Список разработчиков</a></li>
-                    <li><a href="~/Home/AddDeveloper">Добавление разработчиков</a></li>
-                </ul>
-            </li>
-            <li class="submenu-link">
-                <a href="~/Games/GamesList">Игры</a>
-                <ul class="submenu">
-                    <li><a href="~/Games/ListGames">Список игр</a></li>
-                    <li><a href="~/Games/AddGames">Добавление игр</a></li>
-                </ul>
-            </li>
-            <li class="submenu-link">
-                <a href="~/Identity/Pages/Account/Login">Вход</a>
-            </li>
-            <li class="submenu-link">
-                <a href="~/Account/Register">Регистрация</a>
-            </li>
 
-        </ul>
-    </nav>
-      </header>
-               
-  
+        <nav>
+            <ul class="topmenu">
+                <li class="submenu-link">
+                    <a href="~/Home/Index">Разработчики</a>
+                    <ul class="submenu">
+                        <li><a href="~/Home/Index">Список разработчиков</a></li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li><a href="~/Home/AddDeveloper">Добавление разработчиков</a></li>
+                        }
+                        </ul>
+                </li>
+                <li class="submenu-link">
+                    <a href="~/Games/ListGames">Игры</a>
+                    <ul class="submenu">
+                        <li><a href="~/Games/ListGames">Список игр</a></li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li><a href="~/Games/AddGames">Добавление игр</a></li>
+                        }
+
+                    </ul>
+                </li>
+                <li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a href="~/Roles/UserList">Список пользователей</a>
+                    }
+                  </li>
+                <li class="submenu-link">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="~/Account/Logout">Выход</a>
+                    }
+                    else
+                    {
+                        <a href="~/Account/Login">Вход</a>
+                    }
+
+                </li>
+                <li class="submenu-link">
+                    <a href="~/Account/Register">Регистрация</a>
+                </li>
+                <li>
+
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+
     <!--основной контент-->
     <div class="container body-content">
         @RenderBody()

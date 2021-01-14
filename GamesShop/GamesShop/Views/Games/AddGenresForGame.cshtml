@@ -1,0 +1,37 @@
+﻿@model GamesShop.Models.SomeModelsGenreGame
+<!DOCTYPE html>
+<html>
+<head>
+   
+</head>
+<body>
+    <p>Добавление жанров к игре</p>
+    <form method="post">
+        Выберите игру для игры:
+        <select name="Id_game" role="form">
+            @foreach (var name in Model.Game)
+            {
+                <option value="@name.IdGame">@name.NameOfGame</option>
+
+            }
+        </select><br />
+        Выберите жанры для игры:
+        <select name="Id_genre">
+            @foreach (var name in Model.Genre)
+            {
+                <option value="@name.IdGenre">@name.NameOfGenre</option>
+
+            }
+        </select><br />
+        <div>
+            <input type="submit" id="id" class="btn btn-default" value="Добавить жанр" />
+        </div>
+
+        @ViewData["MessageAddGenresGames"]
+        <div>
+            <a href="~/Games/AddGames">Вернуться на предыдущую страницу</a>
+        </div>
+
+    </form>
+</body>
+</html>

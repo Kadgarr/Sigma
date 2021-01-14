@@ -29,7 +29,7 @@ namespace GamesShop.Controllers
             
         
         [HttpPost]
-        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,  decimal Cost, int CountOfKeys, int IdDeveloper, int IdPublisher, int IdGenre )
+        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,  decimal Cost, int CountOfKeys, int IdDeveloper, int Id_publisher)
         {
             int IdGame = 0;
             using (GamesShopDB_Context db = new GamesShopDB_Context())
@@ -39,9 +39,9 @@ namespace GamesShop.Controllers
                     IdGame = db.Games.Max(p => p.IdGame + 1);
                 }
                 
-                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image = Image, DateOfRelease = DateOfRelease, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = 0, IdGenre= 0 };
+                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image = Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher };
                 // Добавление
-                Console.WriteLine("Запись '" + IdGame + " " + NameOfGame + " " + Image + " " + DateOfRelease + " " + Cost + " " + CountOfKeys + " " + IdDeveloper + "' была успешно добавлена!");
+               
                 db.Games.Add(game);
                 db.SaveChanges();
             }
@@ -61,8 +61,47 @@ namespace GamesShop.Controllers
         [HttpGet]
         public IActionResult ListGames()
         {
-            
             return View(db.Games.ToList());
+        }
+
+
+        [HttpGet]
+        public IActionResult AddGenresForGame()
+        {
+            var model = new SomeModelsGenreGame()
+            {
+                Game = db.Games.AsEnumerable(),
+                Genre = db.Genre.AsEnumerable()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddGenresForGame(int Id_game, int Id_genre)
+        {
+            using (GamesShopDB_Context db = new GamesShopDB_Context())
+            {
+                int Id_recording = 1;
+                if (db.GenresGames.Count() != 0)
+                {
+                    Id_recording = db.GenresGames.Max(p => p.id_recording + 1);
+                }
+                GenresGame genregame = new GenresGame {id_recording= Id_recording, IdGame= Id_game, IdGenre= Id_genre };
+                // Добавление
+                db.GenresGames.Add(genregame);
+                db.SaveChanges();
+            }
+
+
+            
+            var model = new SomeModelsGenreGame()
+            {
+                Game = db.Games.AsEnumerable(),
+                Genre = db.Genre.AsEnumerable()
+            };
+            ViewData["MessageAddGenresGames"] = "Запись '" + Id_game + " " + Id_genre + "' была успешно добавлена!";
+            return View(model);
+
         }
     }
 }

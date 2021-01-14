@@ -47,9 +47,7 @@
                 <input type="text" name="CountOfKeys" />
             </div>
         </div>
-        @*<div>
-            @await Html.PartialAsync("DeveloperList");
-        </div>*@
+
         <label for="Id_developer">Укажите разработчика:</label> <br />
         <select name="Id_developer">
             @foreach (var developer in Model.Developer)
@@ -59,14 +57,7 @@
             }
 
         </select><br />
-        <label for="Id_genre">Укажите жанр:</label> <br />
-        <select name="Id_genre">
-            @foreach (var genre in Model.Genre)
-            {
-                <option value="@genre.IdGenre">@genre.NameOfGenre</option>
-            }
 
-        </select><br />
         <label for="Id_publisher">Укажите издателя:</label> <br />
         <select name="Id_publisher">
             @foreach (var publisher in Model.Publisher)
@@ -76,6 +67,11 @@
             }
 
         </select>
+
+        <div>
+            <a href="~/Games/AddGenresForGame">Добавить жанры к игре</a>
+        </div>
+
         <div>
             <div>
                 <input type="submit" id="button" class="btn btn-default" value="Добавить" />

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GamesShop.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GamesShop.Controllers
 {
+    
     public class HomeController : Controller
     {
 
@@ -31,6 +33,7 @@ namespace GamesShop.Controllers
             return View();
         }
         [HttpPost]
+    
         public IActionResult AddDeveloper( string NameOfDeveloper, string LinkToTheWebSite)
         {
             int IdDeveloper = 0;

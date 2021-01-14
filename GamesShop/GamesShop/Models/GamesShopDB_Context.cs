@@ -14,7 +14,7 @@ namespace GamesShop.Models
         public GamesShopDB_Context(DbContextOptions<GamesShopDB_Context> options)
             : base(options)
         {
-           
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<ContentOfOrder> ContentOfOrders { get; set; }
@@ -23,7 +23,7 @@ namespace GamesShop.Models
         public virtual DbSet<Games> Games { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
-       
+        public virtual DbSet<GenresGame> GenresGames { get; set; }
         public virtual DbSet<Publisher> Publisher { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -59,6 +59,30 @@ namespace GamesShop.Models
                     .HasForeignKey(d => d.IdOrder)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Content_of_order_ToTable");
+            });
+            modelBuilder.Entity<GenresGame>(entity =>
+            {
+                entity.HasKey(e => e.id_recording)
+                   .HasName("[PK_GenresGames]");
+
+                entity.ToTable("GenresGames");
+
+
+                entity.Property(e => e.IdGame).HasColumnName("Id_game");
+
+                entity.Property(e => e.IdGenre).HasColumnName("Id_genre");
+
+                entity.HasOne(d => d.IdGameNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.IdGame)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GenresGames_ToTable_1");
+
+                entity.HasOne(d => d.IdGenreNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.IdGenre)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GenresGames_ToTable");
             });
 
             modelBuilder.Entity<Developer>(entity =>
@@ -126,25 +150,22 @@ namespace GamesShop.Models
 
                 entity.Property(e => e.IdDeveloper).HasColumnName("Id_developer");
 
-                entity.Property(e => e.IdGenre).HasColumnName("Id_genre");
-
                 entity.Property(e => e.IdPublisher).HasColumnName("Id_publisher");
 
                 entity.Property(e => e.NameOfGame)
                     .HasColumnName("Name_of_Game")
                     .HasColumnType("ntext");
 
+                entity.Property(e => e.Description)
+                    .HasColumnName("Description_of_Game")
+                    .HasColumnType("text");
+
+
                 entity.HasOne(d => d.IdDeveloperNavigation)
                     .WithMany(p => p.Games)
                     .HasForeignKey(d => d.IdDeveloper)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Games_ToTable");
-
-                entity.HasOne(d => d.IdGenreNavigation)
-                    .WithMany(p => p.Games)
-                    .HasForeignKey(d => d.IdGenre)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Games_ToTable_2");
 
                 entity.HasOne(d => d.IdPublisherNavigation)
                     .WithMany(p => p.Games)
