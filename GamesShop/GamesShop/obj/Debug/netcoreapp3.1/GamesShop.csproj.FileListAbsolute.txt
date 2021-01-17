@@ -93,3 +93,5 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Account\Logout.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Roles\EditUser.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Roles\UserList.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\EditGames.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\DeleteGenresForGame.cshtml.g.cs

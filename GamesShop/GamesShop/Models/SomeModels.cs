@@ -10,6 +10,5 @@ namespace GamesShop.Models
     {
         public IEnumerable<Developer> Developer{ get; set; }
         public IEnumerable<Publisher> Publisher { get; set; }
-        public IEnumerable<Genre> Genre { get; set; }
     }
 }

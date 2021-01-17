@@ -11,28 +11,44 @@
     <title>Магазин компьютерных игр</title>
 </head>
 <body>
+
     <h3> Список игр </h3>
+   
     <table class="table-condensed">
         <tr>
             <td></td>
             <td> Название игры:</td>
             <td> Дата Релиза:</td>
             
-        </tr>
+        </tr> 
         @foreach (var games in Model)
         {
     <tr>
+        <td><div style=" visibility:hidden">@games.IdGame</div></td>
         <td><img src="@games.Image" alt="@games.Image"></td>
         <td> @games.NameOfGame</td>
         <td>@Html.DisplayFor(modelItem => games.DateOfRelease) </td>
-        <td></td>
+        @if (User.IsInRole("admin"))
+        {
+            <td><a asp-action="EditGames" asp-controller="Games" asp-route-id="@games.IdGame">Редактировать</a></td>
+        }
 
+        @if (User.IsInRole("admin"))
+        {
+            <td>
+                <form asp-controller="Games" asp-action="DeleteGame" asp-route-id="@games.IdGame" method="post">
+                    <button type="submit">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        }
     </tr>
         }
 
     </table>
 
-   
+    
 
 </body>
 </html>

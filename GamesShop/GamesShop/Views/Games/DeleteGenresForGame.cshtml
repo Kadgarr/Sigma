@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GamesShop.Models.GenresGame>
+<!DOCTYPE html>
+<html>
+<head>
+   
+</head>
+<body>
+    <h2>Список жанров игры </h2>
+
+    <table>
+        @foreach (var grgame in Model)
+        {
+            <tr>
+                <td>@using (GamesShopDB_Context db = new GamesShopDB_Context())
+                    {
+                    var gr = db.Games.FirstOrDefault(x => x.IdGame == grgame.IdGame);
+                    @gr.NameOfGame
+                    }
+                </td>
+                <td> @using (GamesShopDB_Context db = new GamesShopDB_Context())
+                {
+                    var gr = db.Genre.FirstOrDefault(x => x.IdGenre == grgame.IdGenre);
+                    @gr.NameOfGenre
+                }
+                </td>
+                <td>
+                    
+                    <form asp-controller="Games" asp-action="DeleteGenresForGame" asp-route-id="@grgame.id_recording" method="post">
+                        <button type="submit">
+                            Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+                }
+        @ViewData["MessageDeleteGenreGame"];
+
+    </table>
+</body>
+</html>

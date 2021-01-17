@@ -38,7 +38,8 @@ namespace GamesShop.Models
         {
             modelBuilder.Entity<ContentOfOrder>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdOrder)
+                   .HasName("[PK_Content_of_order]");
 
                 entity.ToTable("Content_of_order");
 
@@ -64,6 +65,7 @@ namespace GamesShop.Models
             {
                 entity.HasKey(e => e.id_recording)
                    .HasName("[PK_GenresGames]");
+              
 
                 entity.ToTable("GenresGames");
 

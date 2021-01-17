@@ -1,23 +1,33 @@
 ﻿@model IEnumerable<GamesShop.Models.User>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/styles_main.css" />
+</head>
+<body>
+    <h2>Список пользователей</h2>
 
-<h2>Список пользователей</h2>
+    <table>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <a asp-action="EditRoles" asp-route-userid="@user.Id">Права доступа</a>
+                    <a asp-controller="Roles" asp-action="EditUser" asp-route-id="@user.Id">Изменить</a>
+                    <form asp-controller="Roles" asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
+                        <button type="submit">
+                            Удалить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
 
-<table >
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.Email</td>
-            <td>
-                <a asp-action="EditRoles" asp-route-userid="@user.Id">Права доступа</a>
-                <a asp-controller="Roles"asp-action="EditUser" asp-route-id="@user.Id">Изменить</a>
-                <form asp-controller="Roles" asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
-                    <button type="submit">
-                        Удалить
-                    </button>
-                </form>
-            </td>
-        </tr>
-    }
-    
-</table>
-<a href="~/Roles/IndexRoles">Список ролей</a>
+    </table>
+    <a href="~/Roles/IndexRoles">Список ролей</a>
+</body>
+</html>
