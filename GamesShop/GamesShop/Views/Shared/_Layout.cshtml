@@ -21,7 +21,7 @@
                         {
                             <li><a href="~/Home/AddDeveloper">Добавление разработчиков</a></li>
                         }
-                        </ul>
+                    </ul>
                 </li>
                 <li class="submenu-link">
                     <a href="~/Games/ListGames">Игры</a>
@@ -34,7 +34,7 @@
 
                     </ul>
                 </li>
-                <li  class="submenu-link">
+                <li class="submenu-link">
                     @*<a href="~/Roles/UserList">Список пользователей</a>*@
                     @if (User.IsInRole("admin"))
                     {
@@ -64,8 +64,13 @@
                 <li class="submenu-link">
                     <a href="~/Account/Register">Регистрация</a>
                 </li>
-              
+
+
             </ul>
+            <form asp-controller="Games" asp-action="ListGames" method="post">
+                Поиск:<input type="text" name="SearchString"/>
+                <input type="submit" value="Найти" />
+            </form>
         </nav>
 
     </header>

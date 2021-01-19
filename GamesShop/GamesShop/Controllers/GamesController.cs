@@ -199,6 +199,20 @@ namespace GamesShop.Controllers
             }
             return View(game);
         }
-       
+
+        [HttpPost]
+        public IActionResult ListGames(string SearchString)
+        {
+            var movies = from m in db.Games
+                         select m;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                movies = movies.Where(s => s.NameOfGame.StartsWith(SearchString));
+            }
+            
+
+            return View( movies.ToList());
+        }
     }
 } 
