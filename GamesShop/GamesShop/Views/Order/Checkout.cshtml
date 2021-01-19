@@ -1,0 +1,25 @@
+﻿@model Orders
+
+<div>
+    <h3>Оформление заказа</h3>
+    <form asp-action="Checkout" method="post">
+        <div>
+            <label asp-for="name"></label>
+            <input asp-for="name" />
+            <span asp-validation-for="name"></span>
+
+        </div>
+        <div>
+            <label asp-for="email"></label>
+            <input asp-for="email" />
+            <span asp-validation-for="email"></span>
+        </div>
+        <div>
+            <label asp-for="idCard"></label>
+            <input asp-for="idCard" />
+            <span asp-validation-for="idCard"></span>
+        </div>
+
+        <input type="submit" value="Завершить заказ" />
+    </form>
+</div>

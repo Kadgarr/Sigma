@@ -30,6 +30,8 @@ namespace GamesShop.Controllers
         {
             if (ModelState.IsValid)
             {
+               
+
                 User user = new User { Email = model.Email, UserName = model.Fio, ID_Card = int.Parse(model.ID_Card), };
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -37,6 +39,7 @@ namespace GamesShop.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
+                    await RoleInitializer.InitializeUserAsync(user, _userManager);
                     return RedirectToAction("Index", "Home");
                 }
                 else

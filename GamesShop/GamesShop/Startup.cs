@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GamesShop.Controllers;
 using GamesShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,9 @@ namespace GamesShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<GamesShopDB_Context>(options => options.UseSqlServer(connection));
             
@@ -33,12 +37,18 @@ namespace GamesShop
         .AddEntityFrameworkStores<GamesShopDB_Context>();
 
 
+            services.AddScoped(sp => Cart.GetCart(sp));
+
+            
+            services.AddMvc();
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,11 +62,12 @@ namespace GamesShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

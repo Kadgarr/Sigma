@@ -1,0 +1,29 @@
+﻿@model GamesShop.Models.User
+@{
+    
+}
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <input type="hidden" asp-for="Id" />
+        </div>
+        <div>
+            <label asp-for="UserName">Имя:</label>
+            <input type="text" asp-for="UserName" />
+        </div>
+        <div>
+            <label asp-for="Email">Email</label>
+            <input type="text" asp-for="Email" />
+        </div>
+        <div>
+            <label asp-for="Year">Дата рождения</label>
+            <input type="date" asp-for="Year" />
+        </div>
+        <div>
+            <label asp-for="ID_Card">Id карты:</label>
+            <input type="text" asp-for="ID_Card" />
+        </div>
+        <div>
+            <input type="submit" value="Сохранить изменения" />
+        </div>
+    </form>

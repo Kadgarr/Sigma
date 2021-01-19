@@ -21,6 +21,11 @@ namespace GamesShop.Migrations
 
             modelBuilder.Entity("GamesShop.Models.ContentOfOrder", b =>
                 {
+                    b.Property<int>("id_recording")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<int?>("CountOfCopies")
                         .HasColumnType("int")
                         .HasColumnName("Count_of_copies");
@@ -31,7 +36,10 @@ namespace GamesShop.Migrations
 
                     b.Property<int>("IdOrder")
                         .HasColumnType("int")
-                        .HasColumnName("Id_order");
+                        .HasColumnName("IdOrder");
+
+                    b.HasKey("id_recording")
+                        .HasName("[PK_Content_of_order]");
 
                     b.HasIndex("IdGame");
 
@@ -96,7 +104,7 @@ namespace GamesShop.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ID_Game");
 
-                    b.Property<decimal?>("Cost")
+                    b.Property<decimal>("Cost")
                         .HasColumnType("money");
 
                     b.Property<int?>("CountOfKeys")
@@ -158,6 +166,11 @@ namespace GamesShop.Migrations
 
             modelBuilder.Entity("GamesShop.Models.GenresGame", b =>
                 {
+                    b.Property<int>("id_recording")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<int>("IdGame")
                         .HasColumnType("int")
                         .HasColumnName("Id_game");
@@ -165,6 +178,9 @@ namespace GamesShop.Migrations
                     b.Property<int>("IdGenre")
                         .HasColumnType("int")
                         .HasColumnName("Id_genre");
+
+                    b.HasKey("id_recording")
+                        .HasName("[PK_GenresGames]");
 
                     b.HasIndex("IdGame");
 
@@ -187,8 +203,19 @@ namespace GamesShop.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("Id");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("money");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("idCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("IdOrder")
                         .HasName("PK__Zakazi__CCA650A0618FFDCA");
@@ -216,6 +243,29 @@ namespace GamesShop.Migrations
                         .HasName("PK__Izdatel__A19FC79764CD432E");
 
                     b.ToTable("Publisher");
+                });
+
+            modelBuilder.Entity("GamesShop.Models.ShopCartItem", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ShopCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("gameIdGame")
+                        .HasColumnType("int");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("gameIdGame");
+
+                    b.ToTable("ShopCartItem");
                 });
 
             modelBuilder.Entity("GamesShop.Models.User", b =>
@@ -478,7 +528,7 @@ namespace GamesShop.Migrations
                     b.HasOne("GamesShop.Models.Games", "IdGameNavigation")
                         .WithMany()
                         .HasForeignKey("IdGame")
-                        .HasConstraintName("FK_GenresGames_ToTable_1")
+                        .HasConstraintName("FK_GenresGames_ToTable_")
                         .IsRequired();
 
                     b.HasOne("GamesShop.Models.Genre", "IdGenreNavigation")
@@ -500,6 +550,15 @@ namespace GamesShop.Migrations
                         .HasConstraintName("FK_Zakazi_ToTable");
 
                     b.Navigation("IdUserNavigation");
+                });
+
+            modelBuilder.Entity("GamesShop.Models.ShopCartItem", b =>
+                {
+                    b.HasOne("GamesShop.Models.Games", "game")
+                        .WithMany()
+                        .HasForeignKey("gameIdGame");
+
+                    b.Navigation("game");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

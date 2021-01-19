@@ -32,7 +32,7 @@ namespace GamesShop.Controllers
             
         
         [HttpPost]
-        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,  decimal Cost, int CountOfKeys, int IdDeveloper, int Id_publisher)
+        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,  int Cost, int CountOfKeys, int IdDeveloper, int Id_publisher)
         {
             int IdGame = 0;
             using (GamesShopDB_Context db = new GamesShopDB_Context())
@@ -197,7 +197,6 @@ namespace GamesShop.Controllers
             {
                 return NotFound();
             }
-
             return View(game);
         }
        

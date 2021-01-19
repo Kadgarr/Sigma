@@ -14,6 +14,7 @@ namespace GamesShop.Models
         public GamesShopDB_Context(DbContextOptions<GamesShopDB_Context> options)
             : base(options)
         {
+           
             Database.EnsureCreated();
         }
 
@@ -25,6 +26,7 @@ namespace GamesShop.Models
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<GenresGame> GenresGames { get; set; }
         public virtual DbSet<Publisher> Publisher { get; set; }
+        public virtual DbSet<ShopCartItem> ShopCartItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,7 +40,7 @@ namespace GamesShop.Models
         {
             modelBuilder.Entity<ContentOfOrder>(entity =>
             {
-                entity.HasKey(e => e.IdOrder)
+                entity.HasKey(e => e.id_recording)
                    .HasName("[PK_Content_of_order]");
 
                 entity.ToTable("Content_of_order");
@@ -47,7 +49,8 @@ namespace GamesShop.Models
 
                 entity.Property(e => e.IdGame).HasColumnName("Id_game");
 
-                entity.Property(e => e.IdOrder).HasColumnName("Id_order");
+                entity.Property(e => e.IdOrder).HasColumnName("IdOrder");
+
 
                 entity.HasOne(d => d.IdGameNavigation)
                     .WithMany()
@@ -78,7 +81,7 @@ namespace GamesShop.Models
                     .WithMany()
                     .HasForeignKey(d => d.IdGame)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_GenresGames_ToTable_1");
+                    .HasConstraintName("FK_GenresGames_ToTable_");
 
                 entity.HasOne(d => d.IdGenreNavigation)
                     .WithMany()

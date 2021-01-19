@@ -26,7 +26,7 @@
     <tr>
         <td><div style=" visibility:hidden">@games.IdGame</div></td>
         <td><img src="@games.Image" alt="@games.Image"></td>
-        <td> @games.NameOfGame</td>
+        <td><a asp-action="GameView" asp-controller="Games" asp-route-id="@games.IdGame"> @games.NameOfGame</a></td>
         <td>@Html.DisplayFor(modelItem => games.DateOfRelease) </td>
         @if (User.IsInRole("admin"))
         {

@@ -1,0 +1,48 @@
+﻿@model GamesShop.Models.ViewModels.CartIndexViewModel
+
+@{
+    ViewBag.Title = "GameStore: ваша корзина";
+}
+
+    <div>
+        @foreach (var item in Model.Cart.listShopItems)
+        {
+            <div>
+                <b>Игра:</b>@using (GamesShopDB_Context db = new GamesShopDB_Context())
+                {
+                    var gr = db.Games.FirstOrDefault(x => x.IdGame == item.game.IdGame);
+                    @gr.NameOfGame
+                }<br />
+                <b>
+                    Цена:  @using (GamesShopDB_Context db = new GamesShopDB_Context())
+                    {
+                        var gr = db.Games.FirstOrDefault(x => x.IdGame == item.game.IdGame);
+                        @gr.Cost
+                    }грн
+                </b>
+            </div>
+            <form asp-action="removeFromCart" asp-controller="Cart" asp-route-id="@item.id">
+                <button type="submit">Удалить из корзины</button>
+            </form>
+        }
+        Общая стоимость:
+        @{
+            int summ = 0;
+            foreach (var item in Model.Cart.listShopItems)
+            {
+                summ += item.game.Cost;
+            }
+            @summ
+        } грн.
+
+        @if (User.IsInRole("user") || User.IsInRole("admin"))
+        {
+            <a asp-controller="Order" asp-action="CheckoutAutorize" asp-route-name="@User.Identity.Name">Оплатить</a>
+        }
+        else
+        {
+            <a asp-controller="Order" asp-action="Checkout">Оплатить</a>
+        }
+
+    </div>
+

@@ -14,7 +14,7 @@ namespace GamesShop.Models
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfRelease { get; set; }
-        public decimal? Cost { get; set; }
+        public int Cost { get; set; }
         public int? CountOfKeys { get; set; }
         public string Description { get; set; }
         public int Developers { get; set; }

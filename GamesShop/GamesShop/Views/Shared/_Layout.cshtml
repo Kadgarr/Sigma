@@ -35,11 +35,15 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="~/Roles/UserList">Список пользователей</a>
                     @if (User.IsInRole("admin"))
                     {
                         <a href="~/Roles/UserList">Список пользователей</a>
                     }
-                  </li>
+                </li>
+                <li>
+                    <a href="~/Cart/CartView">Корзина</a>
+                </li>
                 <li class="submenu-link">
                     @if (User.Identity.IsAuthenticated)
                     {

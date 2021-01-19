@@ -75,8 +75,6 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.csproj.CoreCompileInputs.cache
-C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\AddGames.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddDeveloper.cshtml.g.cs
@@ -95,3 +93,10 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Roles\UserList.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\EditGames.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\DeleteGenresForGame.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\GameView.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.csproj.CoreCompileInputs.cache
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Cart\CartView.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Order\Checkout.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Order\Complete.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Order\CheckoutAutorize.cshtml.g.cs
