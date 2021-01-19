@@ -45,11 +45,7 @@
 
         <label asp-for="IdDeveloper"> Разработчик:</label>
         <div>
-            @using (GamesShopDB_Context db = new GamesShopDB_Context())
-            {
-                var gr = db.Developer.FirstOrDefault(x => x.IdDeveloper == Model.IdDeveloper);
-                @gr.NameOfDeveloper
-            }
+            @Model.IdDeveloperNavigation.NameOfDeveloper
         </div>
 
         @if (User.IsInRole("admin"))

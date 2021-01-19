@@ -34,8 +34,8 @@
 
                     </ul>
                 </li>
-                <li>
-                    <a href="~/Roles/UserList">Список пользователей</a>
+                <li  class="submenu-link">
+                    @*<a href="~/Roles/UserList">Список пользователей</a>*@
                     @if (User.IsInRole("admin"))
                     {
                         <a href="~/Roles/UserList">Список пользователей</a>
@@ -56,12 +56,15 @@
 
                 </li>
                 <li class="submenu-link">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name">Профиль</a>
+                    }
+                </li>
+                <li class="submenu-link">
                     <a href="~/Account/Register">Регистрация</a>
                 </li>
-                <li>
-
-                </li>
-
+              
             </ul>
         </nav>
 

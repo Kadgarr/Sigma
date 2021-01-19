@@ -13,6 +13,7 @@ namespace GamesShop.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        GamesShopDB_Context db = new GamesShopDB_Context();
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -119,6 +120,44 @@ namespace GamesShop.Controllers
             {
                 return RedirectToAction();
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(string name)
+        {
+            User user = await _userManager.FindByNameAsync(name);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(User getuser)
+        {
+            User user = await _userManager.FindByNameAsync(getuser.UserName);
+            if (ModelState.IsValid)
+            {
+                if (user != null)
+                {
+                    user.Email = getuser.Email;
+                    //user.UserName = getuser.UserName;
+                    user.Year = getuser.Year;
+                    user.ID_Card = getuser.ID_Card;
+
+                    db.Users.Update(user);
+                    await db.SaveChangesAsync();
+
+                        ViewData["MsgSaveEditUser"] = "Измененные данные успешно сохранены!";
+                         return View(user);
+                    
+                   
+                }
+            }
+            return View(user);
+
+
         }
     }
 }

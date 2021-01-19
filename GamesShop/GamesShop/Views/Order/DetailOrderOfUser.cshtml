@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ContentOfOrder>
+
+<h3>Подробности заказа</h3>
+    <div>
+        <table>
+            <tr>
+                <td>
+                Id заказа:
+                </td>
+                <td>
+                Название игры:
+                </td>
+                <td>
+                Стоимость игры:
+                </td>
+            </tr>
+
+            @foreach (var contord in Model)
+            {
+                <tr>
+                    <td>
+                        @contord.IdOrder
+                    </td>
+                    <td>
+                        @contord.IdGameNavigation.NameOfGame
+                    </td>
+                    <td>
+                        @contord.IdGameNavigation.Cost
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>

@@ -191,7 +191,7 @@ namespace GamesShop.Controllers
         [HttpGet]
         public IActionResult GameView(int id)
         {
-            Games game =  db.Games.FirstOrDefault(x => x.IdGame == id);
+            var game =  db.Games.Include(x=> x.IdDeveloperNavigation).FirstOrDefault(x => x.IdGame == id);
 
             if (game == null)
             {

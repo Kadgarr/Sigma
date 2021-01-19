@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GamesShop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesShop.Controllers
 {
@@ -151,7 +152,7 @@ namespace GamesShop.Controllers
                 {
                     summ += item.game.Cost;
                 }
-                Console.WriteLine("UserId: " + order.Users.Id);
+            
                 Orders orders = new Orders()
                 {
                     name = order.Users.UserName,
@@ -176,6 +177,7 @@ namespace GamesShop.Controllers
 
                     var content_of_order = new ContentOfOrder()
                     {
+                        IdOrder = id_recording_order,
                         IdGame = el.game.IdGame,
                         id_recording = id_recording_content,
                         
@@ -210,6 +212,22 @@ namespace GamesShop.Controllers
         {
             ViewBag.Message = "Заказ успешно обработан";
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> ListOrdersOfUser(string name)
+        {
+            User user = await _userManager.FindByNameAsync(name);
+            var listOrders = db.Orders.Where(x => x.IdUser == user.Id);
+
+            Console.WriteLine("UserId: " + user.Id);
+            return View(listOrders.ToList());
+        }
+        [HttpGet]
+        public IActionResult DetailOrderOfUser(int id)
+        {
+            var listDetailOrder = db.ContentOfOrders.Where(x => x.IdOrder == id).Include(s=> s.IdGameNavigation);
+
+            return View(listDetailOrder.ToList());
         }
     }
 }
