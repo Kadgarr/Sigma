@@ -6,17 +6,20 @@ using GamesShop.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace GamesShop.Controllers
 {
     public class GamesController : Controller
     {
         GamesShopDB_Context db;
-        [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
-        public GamesController(GamesShopDB_Context context)
+
+        UserManager<User> _userManager;
+       
+        public GamesController(GamesShopDB_Context context, UserManager<User> _userManager)
         {
-            db = context; 
+            db = context;
+            this._userManager = _userManager;
         }
 
         [HttpGet]
@@ -32,7 +35,7 @@ namespace GamesShop.Controllers
             
         
         [HttpPost]
-        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,  int Cost, int CountOfKeys, int IdDeveloper, int Id_publisher)
+        public IActionResult AddGames(string NameOfGame, string Image, DateTime DateOfRelease,string Description,  int Cost, int CountOfKeys, int IdDeveloper, int Id_publisher)
         {
             int IdGame = 0;
             using (GamesShopDB_Context db = new GamesShopDB_Context())
@@ -42,7 +45,7 @@ namespace GamesShop.Controllers
                     IdGame = db.Games.Max(p => p.IdGame + 1);
                 }
                 
-                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image = Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher };
+                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image = Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher, Description=Description };
                 // Добавление
                
                 db.Games.Add(game);
@@ -191,7 +194,7 @@ namespace GamesShop.Controllers
         [HttpGet]
         public IActionResult GameView(int id)
         {
-            var game =  db.Games.Include(x=> x.IdDeveloperNavigation).FirstOrDefault(x => x.IdGame == id);
+            var game =  db.Games.Include(x=> x.Feedbacks).ThenInclude(u=>u.IdUserNavigation).Include(x=>x.IdDeveloperNavigation).FirstOrDefault(x => x.IdGame == id);
 
             if (game == null)
             {
@@ -203,16 +206,44 @@ namespace GamesShop.Controllers
         [HttpPost]
         public IActionResult ListGames(string SearchString)
         {
-            var movies = from m in db.Games
-                         select m;
+            //var games = from m in db.Games
+            //             select m;
+           
+            var games = db.Games.Where(s => s.NameOfGame.StartsWith(SearchString));
 
-            if (!String.IsNullOrEmpty(SearchString))
+            if (games == null)
             {
-                movies = movies.Where(s => s.NameOfGame.StartsWith(SearchString));
+
             }
+            return View(games.ToList());
             
 
-            return View( movies.ToList());
+        }
+
+        public async Task<IActionResult> AddFeedback(int id, string textFeedback)
+        {
+            int idFb = 0;
+
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+
+            using (GamesShopDB_Context db = new GamesShopDB_Context())
+            {
+                if (db.Feedback.Count() != 0)
+                {
+                    idFb = db.Feedback.Max(p => p.IdFeedback + 1);
+                }
+
+                Feedbacks fb = new Feedbacks { IdPokupatel = user.Id, IdGame = id, IdFeedback = idFb, TextOfFeedback = textFeedback, DateOfFeedback = DateTime.Now };
+                // Добавление
+
+                db.Feedback.Add(fb);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("ListGames");
+
         }
     }
-} 
+    }
+ 

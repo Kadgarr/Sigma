@@ -82,7 +82,7 @@ namespace GamesShop.Controllers
 
 
         [HttpPost]
-        [ActionName("Index")]
+      
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var dev = await db.Developer.FindAsync(id);

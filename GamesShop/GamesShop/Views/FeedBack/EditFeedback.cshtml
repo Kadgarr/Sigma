@@ -1,0 +1,42 @@
+﻿@model GamesShop.Models.Feedbacks
+
+<h3>Ваш отзыв </h3>
+
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="IdFeedback">  Id отзыва:</label>
+            <input asp-for="IdFeedback" readonly="readonly" />
+        </div>
+        <div>
+            
+            <input asp-for="IdPokupatel" readonly="readonly" hidden="hidden" />
+        </div>
+        <div>
+            <input asp-for="IdGame" readonly="readonly" hidden="hidden" />
+        </div>
+        <div>
+            <input asp-for="IdPokupatel" readonly="readonly" hidden="hidden" />
+        </div>
+        <div>
+            Был оставлен
+            <input asp-for="DateOfFeedback" readonly="readonly" type="text" />
+        </div>
+
+        <div>
+            <textarea asp-for="TextOfFeedback">
+
+                </textarea>
+        </div>
+
+        <input type="submit" id="button" value="Применить изменения" />
+    </form>
+ 
+    
+    @ViewData["MessageEditFeedBack"]
+    @ViewData["MessageDeleteFeedback"] 
+
+
+
+
+</div>

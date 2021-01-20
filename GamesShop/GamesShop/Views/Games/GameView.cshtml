@@ -1,4 +1,5 @@
-﻿@model GamesShop.Models.Games
+﻿
+@model GamesShop.Models.Games
 @{
     ViewData["Title"] = "GamesShop";
 }
@@ -14,7 +15,6 @@
         <h3>@Model.NameOfGame</h3>
 
 
-
         <div>
             <input asp-for="IdGame" readonly="readonly" hidden="hidden" />
         </div>
@@ -26,9 +26,8 @@
         </div>
 
 
-        <label asp-for="Image"> </label>
         <div>
-            @Model.Image
+            <image src="@Model.Image"></image>
         </div>
 
 
@@ -43,7 +42,7 @@
             @Model.Description
         </div>
 
-        <label asp-for="IdDeveloper"> Разработчик:</label>
+        <label asp-for="IdDeveloperNavigation.NameOfDeveloper"> Разработчик:</label>
         <div>
             @Model.IdDeveloperNavigation.NameOfDeveloper
         </div>
@@ -68,10 +67,57 @@
         </form>
 
 
+        @if (User.Identity.IsAuthenticated)
+        {
+            <label>Оставьте свой отзыв:</label>
+            <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame">
+                <textarea type="text" name="textFeedback">
+            </textarea>
+                <button type="submit">Добавить отзыв</button>
+            </form>
+        }
+        else
+        {
+            <label>Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
+        }
 
+       
 
+    </div>
 
-
+    <div>
+        <label asp-for="Feedbacks"> Отзывы:</label>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        Пользователь:
+                    </td>
+                    <td>
+                        Дата отзыва
+                    </td>
+                    <td>
+                        Отзыв:
+                    </td>
+                </tr>
+                @foreach (var feedback in @Model.Feedbacks)
+                {
+                   
+                    <tr>
+                        <td>
+                            @feedback.IdUserNavigation.UserName
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem => feedback.DateOfFeedback)
+                        </td>
+                        <td>
+                           @feedback.TextOfFeedback
+                        </td>
+                    </tr>
+                }
+            </table>
+           
+        </div>
     </div>
 </body>
 </html>

@@ -134,6 +134,12 @@ namespace GamesShop.Models
                     .HasForeignKey(d => d.IdPokupatel)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Feedbacks_ToTable");
+
+                entity.HasOne(d => d.IdGameNavigation)
+                    .WithMany(p => p.Feedbacks)
+                    .HasForeignKey(d => d.IdGame)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Feedbacks_ToTable_1");
             });
 
             modelBuilder.Entity<Games>(entity =>

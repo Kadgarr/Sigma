@@ -28,3 +28,5 @@
         </div>
     </form>
     <a asp-controller="Order" asp-action="ListOrdersOfUser" asp-route-name="@User.Identity.Name"> Просмотреть историю заказов</a>
+
+    <a asp-controller="FeedBack" asp-action="ViewFeedback" asp-route-name="@User.Identity.Name"> Просмотреть оставленные отзывы</a>

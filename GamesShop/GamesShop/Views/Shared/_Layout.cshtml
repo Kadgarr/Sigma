@@ -4,77 +4,85 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/styles_main.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-    Добро пожаловать на сайт @User.Identity.Name !
+    
     <!--меню-->
     <header>
 
-        <nav>
-            <ul class="topmenu">
-                <li class="submenu-link">
-                    <a href="~/Home/Index">Разработчики</a>
-                    <ul class="submenu">
-                        <li><a href="~/Home/Index">Список разработчиков</a></li>
+        <nav class="navbar navbar-expand-sm bg-light justify-content-around">
+            GamesShop
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index">Разработчики</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="~/Home/Index">Список разработчиков</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a class="dropdown-item" href="~/Home/AddDeveloper">Добавление разработчиков</a>
+                            }
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Games/ListGames">Игры</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="~/Games/ListGames">Список игр</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a class="dropdown-item" href="~/Games/AddGames">Добавление игр</a>
+                            }
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        @*<a href="~/Roles/UserList">Список пользователей</a>*@
                         @if (User.IsInRole("admin"))
                         {
-                            <li><a href="~/Home/AddDeveloper">Добавление разработчиков</a></li>
+                            <a class="nav-link" href="~/Roles/UserList">Список пользователей</a>
                         }
-                    </ul>
-                </li>
-                <li class="submenu-link">
-                    <a href="~/Games/ListGames">Игры</a>
-                    <ul class="submenu">
-                        <li><a href="~/Games/ListGames">Список игр</a></li>
-                        @if (User.IsInRole("admin"))
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Cart/CartView">Корзина</a>
+                    </li>
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a href="~/Games/AddGames">Добавление игр</a></li>
+                            <a class="nav-link" href="~/Account/Logout">Выход</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="~/Account/Login">Вход</a>
                         }
 
-                    </ul>
-                </li>
-                <li class="submenu-link">
-                    @*<a href="~/Roles/UserList">Список пользователей</a>*@
-                    @if (User.IsInRole("admin"))
-                    {
-                        <a href="~/Roles/UserList">Список пользователей</a>
-                    }
-                </li>
-                <li>
-                    <a href="~/Cart/CartView">Корзина</a>
-                </li>
-                <li class="submenu-link">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a href="~/Account/Logout">Выход</a>
-                    }
-                    else
-                    {
-                        <a href="~/Account/Login">Вход</a>
-                    }
-
-                </li>
-                <li class="submenu-link">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name">Профиль</a>
-                    }
-                </li>
-                <li class="submenu-link">
-                    <a href="~/Account/Register">Регистрация</a>
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link" asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name">Профиль</a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Account/Register">Регистрация</a>
+                    </li>
 
 
-            </ul>
-            <form asp-controller="Games" asp-action="ListGames" method="post">
-                Поиск:<input type="text" name="SearchString"/>
-                <input type="submit" value="Найти" />
-            </form>
+                </ul>
+                <form asp-controller="Games" asp-action="ListGames" method="post">
+                    Поиск:
+                    <input type="text" name="SearchString" />
+                    <input type="submit" value="Найти" />
+                </form>
+
+            </div>
+
         </nav>
-
+        Добро пожаловать на сайт @User.Identity.Name !
     </header>
-
+  
+    
 
     <!--основной контент-->
     <div class="container body-content">

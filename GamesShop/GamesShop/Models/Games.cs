@@ -20,5 +20,6 @@ namespace GamesShop.Models
 
         public virtual Developer IdDeveloperNavigation { get; set; }
         public virtual Publisher IdPublisherNavigation { get; set; }
+        public virtual ICollection<Feedbacks> Feedbacks { get; set; }
     }
 }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Feedbacks>
+
+<h3>Ваши отзывы </h3>
+
+<div>
+    <table>
+        <tr>
+            <td>
+                Игра
+            </td>
+            <td>
+                Дата
+            </td>
+            
+        </tr>
+       @foreach(var feedback in Model)
+       {
+        <tr>
+            <td>
+             @feedback.IdGameNavigation.NameOfGame
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => feedback.DateOfFeedback)
+            </td>
+            
+
+        </tr>
+            
+        <tr>
+            <td>
+                @feedback.TextOfFeedback
+            </td>
+            <td>
+                <a asp-action="EditFeedback" asp-controller="FeedBack" asp-route-id="@feedback.IdFeedback">Редактировать</a>
+            </td>
+            <td>
+                <form asp-controller="FeedBack" asp-action="ViewFeedback" asp-route-id="@feedback.IdFeedback" method="post">
+                    <button type="submit">
+                        Удалить отзыв
+                    </button>
+                </form>
+            </td>
+           
+        </tr>
+           
+       }
+    </table>
+</div>
