@@ -17,8 +17,8 @@ namespace GamesShop.Models
         public int Cost { get; set; }
         public int? CountOfKeys { get; set; }
         public string Description { get; set; }
-        public int Developers { get; set; }
-        public int Publishers { get; set; }
+        public int? Developers { get; set; }
+        public int? Publishers { get; set; }
         public IEnumerable<Developer> Developer { get; set; }
         public IEnumerable<Publisher> Publisher { get; set; }
     }

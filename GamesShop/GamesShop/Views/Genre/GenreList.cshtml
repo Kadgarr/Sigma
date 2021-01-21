@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Genre>
+
+<h3>Список издателей</h3>
+<div>
+    @ViewData["MessageDeletePublisher"]
+    <table>
+        <tr>
+            <td>
+                Название жанра:
+            </td>
+            <td>
+                Описание жанра:
+            </td>
+        </tr>
+        @foreach (var genre in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="GenreViewGames" asp-controller="Genre" asp-route-id="@genre.IdGenre"> @genre.NameOfGenre</a>
+                </td>
+                <td>
+                    @genre.DescriptionOfGenre
+                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a asp-controller="Genre" asp-action="EditGenre" asp-route-id="@genre.IdGenre">Редактировать</a>
+                    </td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" asp-action="GenreList" asp-controller="Genre" asp-route-id="@genre.IdGenre">Удалить</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>

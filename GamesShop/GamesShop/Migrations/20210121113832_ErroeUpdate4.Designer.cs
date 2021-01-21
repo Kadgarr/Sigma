@@ -4,14 +4,16 @@ using GamesShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamesShop.Migrations
 {
     [DbContext(typeof(GamesShopDB_Context))]
-    partial class GamesShopDB_ContextModelSnapshot : ModelSnapshot
+    [Migration("20210121113832_ErroeUpdate4")]
+    partial class ErroeUpdate4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,21 +175,16 @@ namespace GamesShop.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("GamesIdGame")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdGame")
+                    b.Property<int>("IdGame")
                         .HasColumnType("int")
-                        .HasColumnName("IdGame");
+                        .HasColumnName("Id_game");
 
-                    b.Property<int?>("IdGenre")
+                    b.Property<int>("IdGenre")
                         .HasColumnType("int")
                         .HasColumnName("Id_genre");
 
                     b.HasKey("id_recording")
                         .HasName("[PK_GenresGames]");
-
-                    b.HasIndex("GamesIdGame");
 
                     b.HasIndex("IdGame");
 
@@ -523,13 +520,13 @@ namespace GamesShop.Migrations
                         .WithMany("Games")
                         .HasForeignKey("IdDeveloper")
                         .HasConstraintName("FK_Games_ToTable")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("GamesShop.Models.Publisher", "IdPublisherNavigation")
                         .WithMany("Games")
                         .HasForeignKey("IdPublisher")
                         .HasConstraintName("FK_Games_ToTable_1")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("IdDeveloperNavigation");
 
@@ -538,19 +535,17 @@ namespace GamesShop.Migrations
 
             modelBuilder.Entity("GamesShop.Models.GenresGame", b =>
                 {
-                    b.HasOne("GamesShop.Models.Games", null)
-                        .WithMany("GenresGames")
-                        .HasForeignKey("GamesIdGame");
-
                     b.HasOne("GamesShop.Models.Games", "IdGameNavigation")
                         .WithMany()
                         .HasForeignKey("IdGame")
-                        .HasConstraintName("FK_GenresGames_ToTable_");
+                        .HasConstraintName("FK_GenresGames_ToTable_")
+                        .IsRequired();
 
                     b.HasOne("GamesShop.Models.Genre", "IdGenreNavigation")
                         .WithMany()
                         .HasForeignKey("IdGenre")
-                        .HasConstraintName("FK_GenresGames_ToTable");
+                        .HasConstraintName("FK_GenresGames_ToTable")
+                        .IsRequired();
 
                     b.Navigation("IdGameNavigation");
 
@@ -562,8 +557,7 @@ namespace GamesShop.Migrations
                     b.HasOne("GamesShop.Models.User", "IdUserNavigation")
                         .WithMany("Orders")
                         .HasForeignKey("IdUser")
-                        .HasConstraintName("FK_Zakazi_ToTable")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasConstraintName("FK_Zakazi_ToTable");
 
                     b.Navigation("IdUserNavigation");
                 });
@@ -636,8 +630,6 @@ namespace GamesShop.Migrations
             modelBuilder.Entity("GamesShop.Models.Games", b =>
                 {
                     b.Navigation("Feedbacks");
-
-                    b.Navigation("GenresGames");
                 });
 
             modelBuilder.Entity("GamesShop.Models.Publisher", b =>

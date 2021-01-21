@@ -1,0 +1,24 @@
+﻿@model Genre
+
+<h3>Форма редактирования издателя</h3>
+<div>
+    <form asp-action="EditGenre" asp-controller="Genre" method="post">
+        <div>
+            <label asp-for="@Model.IdGenre">Id жанра</label>
+            <input asp-for="@Model.IdGenre" readonly="readonly" />
+
+        </div>
+        <div>
+            <label asp-for="@Model.NameOfGenre"> Название жанра</label>
+            <input asp-for="@Model.NameOfGenre" />
+
+        </div>
+        <div>
+            <label asp-for="@Model.DescriptionOfGenre"> Ссылка на сайт</label>
+            <input asp-for="@Model.DescriptionOfGenre" /> 
+
+        </div>
+
+        <button type="submit">Подтвердить изменения</button>
+    </form>
+</div>

@@ -4,14 +4,16 @@ using GamesShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamesShop.Migrations
 {
     [DbContext(typeof(GamesShopDB_Context))]
-    partial class GamesShopDB_ContextModelSnapshot : ModelSnapshot
+    [Migration("20210121155510_Error4")]
+    partial class Error4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

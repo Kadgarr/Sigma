@@ -6,8 +6,8 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
-<body>
-    
+<body style="margin: 0px;">
+    Добро пожаловать на сайт @User.Identity.Name !
     <!--меню-->
     <header>
 
@@ -16,6 +16,7 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                 <ul class="navbar-nav text-center">
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index">Разработчики</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -23,6 +24,16 @@
                             @if (User.IsInRole("admin"))
                             {
                                 <a class="dropdown-item" href="~/Home/AddDeveloper">Добавление разработчиков</a>
+                            }
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Publisher/PublisherList">Издатели</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="~/Publisher/PublisherList">Список издателей</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a class="dropdown-item" href="~/Publisher/AddPublisher">Добавление издателей</a>
                             }
                         </div>
                     </li>
@@ -35,7 +46,17 @@
                                 <a class="dropdown-item" href="~/Games/AddGames">Добавление игр</a>
                             }
                         </div>
+                    </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Genre/GenreList">Жанры</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="~/Genre/GenreList">Список жанров</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a class="dropdown-item" href="~/Genre/AddGenre">Добавление жанров</a>
+                            }
+                        </div>
                     </li>
                     <li class="nav-item">
                         @*<a href="~/Roles/UserList">Список пользователей</a>*@
@@ -68,7 +89,6 @@
                         <a class="nav-link" href="~/Account/Register">Регистрация</a>
                     </li>
 
-
                 </ul>
                 <form asp-controller="Games" asp-action="ListGames" method="post">
                     Поиск:
@@ -79,19 +99,23 @@
             </div>
 
         </nav>
-        Добро пожаловать на сайт @User.Identity.Name !
     </header>
-  
-    
 
     <!--основной контент-->
-    <div class="container body-content">
+    <div class="container align-content-center ">
+
+
         @RenderBody()
         <hr />
-        <footer>
-            <p>© 2021 - GameShop</p>
-        </footer>
+
     </div>
+    <footer>
+        <p>© 2021 - GameShop</p>
+    </footer>
+
+
+
+
 </body>
 <script> </script>
 </html>

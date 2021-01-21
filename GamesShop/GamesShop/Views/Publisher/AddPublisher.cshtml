@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Список добавление разработчиков";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление информации о разработчике</title>
+</head>
+<body>
+    <div>
+        <h3>Форма добавления издателя</h3>
+        <p>Для добавления разработчика заполните следующие поля:</p>
+        <form method="post" class="form-horizontal" role="form">
+          
+            <div class="form-group">
+                <label for="NameOfPublisher" class="col-md-2 control-label">  Название издателя:</label>
+                <div class="col-md-4">
+                    <input type="text" name="NameOfPublisher" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LinkToTheWebSite" class="col-md-2 control-label"> Ссылка на веб сайт:</label>
+                <div class="col-md-4">
+                    <input type="text" name="LinkToTheWebSite" />
+                </div>
+            </div>
+            <div >
+                <div >
+                    <input type="submit" id="button"  value="Добавить" />
+                </div>
+            </div>
+
+        </form>
+        <h3>@ViewData["Message"]</h3>
+      
+        
+    </div>
+</body>
+</html>

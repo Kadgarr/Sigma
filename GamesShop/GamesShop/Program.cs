@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GamesShop.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,7 @@ namespace GamesShop
     {
         public static void Main(string[] args)
         {
+            Task t;
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
@@ -23,6 +25,10 @@ namespace GamesShop
                 try
                 {
                     var context = services.GetRequiredService<GamesShopDB_Context>();
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    t= RoleInitializer.InitializeAsync(userManager, rolesManager);
+                    t.Wait();
                 }
                 catch (Exception ex)
                 {

@@ -14,7 +14,7 @@ namespace GamesShop.Models
         public GamesShopDB_Context(DbContextOptions<GamesShopDB_Context> options)
             : base(options)
         {
-           
+           //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -73,13 +73,13 @@ namespace GamesShop.Models
                 entity.ToTable("GenresGames");
 
 
-                entity.Property(e => e.IdGame).HasColumnName("Id_game");
+                entity.Property(e => e.IdGame).HasColumnName("IdGame");
 
                 entity.Property(e => e.IdGenre).HasColumnName("Id_genre");
 
-                entity.HasOne(d => d.IdGameNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.IdGame)
+                entity.HasOne(d => d.IdGameNavigation).WithMany(p=>p.GenresGames)
+                   
+                    .HasForeignKey(p => p.IdGame)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GenresGames_ToTable_");
 
@@ -175,13 +175,13 @@ namespace GamesShop.Models
                 entity.HasOne(d => d.IdDeveloperNavigation)
                     .WithMany(p => p.Games)
                     .HasForeignKey(d => d.IdDeveloper)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Games_ToTable");
 
                 entity.HasOne(d => d.IdPublisherNavigation)
                     .WithMany(p => p.Games)
                     .HasForeignKey(d => d.IdPublisher)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Games_ToTable_1");
             });
 
@@ -223,7 +223,7 @@ namespace GamesShop.Models
                 entity.HasOne(d => d.IdUserNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.IdUser)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Zakazi_ToTable");
             });
 

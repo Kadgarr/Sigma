@@ -12,13 +12,15 @@ namespace GamesShop.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<User> _signInManager;
         GamesShopDB_Context db = new GamesShopDB_Context();
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> _roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this._roleManager = _roleManager;
         }
 
         [HttpGet]
@@ -38,9 +40,9 @@ namespace GamesShop.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
+                    
                     await _signInManager.SignInAsync(user, false);
-                    await RoleInitializer.InitializeUserAsync(user, _userManager);
+                    await RoleInitializer.InitializeUserAsync(user, _userManager, _roleManager);
                     return RedirectToAction("Index", "Home");
                 }
                 else

@@ -1,0 +1,24 @@
+﻿@model Publisher
+
+<h3>Форма редактирования издателя</h3>
+<div>
+    <form asp-action="EditPublisher" asp-controller="Publisher" method="post">
+        <div>
+            <label asp-for="@Model.IdPublisher">Id издателя</label>
+            <input asp-for="@Model.IdPublisher" readonly="readonly" />
+
+        </div>
+        <div>
+            <label asp-for="@Model.NameOfIzdatel"> Название издателя</label>
+            <input asp-for="@Model.NameOfIzdatel" />
+
+        </div>
+        <div>
+            <label asp-for="@Model.LinkToTheWebSite"> Ссылка на сайт</label>
+            <input asp-for="@Model.LinkToTheWebSite" /> 
+
+        </div>
+
+        <button type="submit">Подтвердить изменения</button>
+    </form>
+</div>

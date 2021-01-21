@@ -122,7 +122,7 @@ namespace GamesShop.Controllers
         public IActionResult PostDeleteGenresForGame(int id)
         {
             var model = db.GenresGames.Find(id);
-            int idgame = model.IdGame;
+            int? idgame = model.IdGame;
            
             if (model != null)
             {
@@ -192,9 +192,9 @@ namespace GamesShop.Controllers
         }
 
         [HttpGet]
-        public IActionResult GameView(int id)
+        public async Task<IActionResult> GameView(int id)
         {
-            var game =  db.Games.Include(x=> x.Feedbacks).ThenInclude(u=>u.IdUserNavigation).Include(x=>x.IdDeveloperNavigation).FirstOrDefault(x => x.IdGame == id);
+            Games game = await db.Games.Include(v => v.GenresGames).ThenInclude(g => g.IdGenreNavigation).Include(x => x.Feedbacks).ThenInclude(u => u.IdUserNavigation).Include(x => x.IdDeveloperNavigation).FirstOrDefaultAsync(x => x.IdGame == id);
 
             if (game == null)
             {

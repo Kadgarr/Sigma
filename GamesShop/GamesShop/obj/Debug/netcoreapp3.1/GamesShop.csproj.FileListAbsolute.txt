@@ -105,3 +105,10 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\GamesShop.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\FeedBack\ViewFeedback.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\FeedBack\EditFeedback.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Publisher\PublisherList.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Publisher\EditPublisher.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Publisher\AddPublisher.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Genre\AddGenre.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Genre\EditGenre.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Genre\GenreList.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Genre\GenreViewGames.cshtml.g.cs

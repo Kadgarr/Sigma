@@ -36,6 +36,14 @@
             @Model.DateOfRelease
         </div>
 
+        <label asp-for="GenresGames"> Жанры игры:</label>
+        <div>
+           @foreach(var genre in Model.GenresGames)
+           {
+               @genre.IdGenreNavigation.NameOfGenre
+           }
+        </div>
+
 
         <label asp-for="Description"> Описание игры:</label>
         <div>
@@ -81,7 +89,7 @@
             <label>Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
         }
 
-       
+
 
     </div>
 
