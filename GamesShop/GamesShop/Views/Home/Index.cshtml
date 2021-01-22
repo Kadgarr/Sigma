@@ -22,18 +22,22 @@
         </tr>
         @foreach (var developer in Model)
         {
-            <tr>
-                <td> @developer.IdDeveloper</td>
-                <td> @developer.NameOfDeveloper</td>
-                <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
-                <td><a asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
-                <td>
-                    <form method="post">
-                        <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
-                    </form>
-                </td>
+    <tr>
+        <td> <a asp-action="DeveloperViewGames" asp-controller="Home" asp-route-id="@developer.IdDeveloper"> @developer.NameOfDeveloper</a></td>
+        <td> @developer.NameOfDeveloper</td>
+        <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td><a asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
+            <td>
+                <form method="post">
+                    <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
+                </form>
+            </td>
+        }
 
-            </tr>
+
+    </tr>
 
         }
 

@@ -151,11 +151,6 @@ namespace GamesShop.Controllers
 
                     var removedRoles = userRoles.ToList().Except(roleId);
 
-                    foreach (var ur in removedRoles)
-                    {
-                        Console.WriteLine("RolesId: " + ur);
-                    }
-
                     foreach (var ur in addedRoles)
                     {
                         IdentityUserRole<string> userrole = new IdentityUserRole<string>()
@@ -168,9 +163,6 @@ namespace GamesShop.Controllers
                         await db.SaveChangesAsync();
                     }
 
-
-
-
                     foreach (var ur in removedRoles)
                     {
                         IdentityUserRole<string> userroledelete = new IdentityUserRole<string>()
@@ -182,26 +174,14 @@ namespace GamesShop.Controllers
                         await db.SaveChangesAsync();
                     }
 
-
-
-
                     return RedirectToAction("UserList");
-
-
-
                 }
             }
             catch
             {
                 return NotFound();
             }
-               
-            
-            
-
-          
-
-
+             
 
         }
     }

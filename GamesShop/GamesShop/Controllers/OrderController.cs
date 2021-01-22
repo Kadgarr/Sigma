@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GamesShop.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,29 @@ namespace GamesShop.Controllers
         public IActionResult Checkout()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult ListOrdersOfAdmin()
+        {
+            var orders = db.Orders.ToList();
+            return View(orders);
+        }
+
+        [HttpPost]
+        public IActionResult ListOrdersOfAdmin(string SearchString)
+        {
+            //var games = from m in db.Games
+            //             select m;
+            var orders = db.Orders.Where(s => s.email.StartsWith(SearchString));
+
+            if (orders == null)
+            {
+
+            }
+            return View(orders.ToList());
+
+
         }
 
         [HttpGet]
@@ -196,11 +220,16 @@ namespace GamesShop.Controllers
                     game.CountOfKeys = game.CountOfKeys - count_cop;
 
                     db.Games.Update(game);
-
+                    
                     db.ContentOfOrders.Add(content_of_order);
                     db.SaveChanges();
+                } 
+                foreach(var sh in shopCart.listShopItems)
+                {
+                    var shcart = db.ShopCartItem.FirstOrDefault(x => x.ShopCartId == sh.ShopCartId);
+                    shopCart.RemoveFromCart(shcart);
                 }
-
+              
 
                 return RedirectToAction("Complete");
             }

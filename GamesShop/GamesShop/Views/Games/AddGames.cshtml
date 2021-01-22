@@ -24,9 +24,9 @@
             </div>
         </div>
         <div>
-            <label for="Image"> Ссылка на изображение:</label>
             <div>
-                <input type="text" name="Image" />
+                <label for="Image">  Выберите изображение:</label><br />
+                <input type="file" for="Image" /><br>
             </div>
         </div>
         <div>
@@ -50,36 +50,51 @@
         <div>
             <label for="Description">  Описание:</label>
             <div>
-                <textarea type="text" name="Description" ></textarea>
+                <textarea type="text" name="Description"></textarea>
             </div>
         </div>
 
         <label for="Id_developer">Укажите разработчика:</label> <br />
-        <select name="Id_developer">
-            @foreach (var developer in Model.Developer)
-            {
-                <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
-            }
+        @if (Model.Developer.Count() <= 0)
+        {
+            <label style="color:red">Данные о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
+        }
+        else
+        {
+            <select name="Id_developer">
+                @foreach (var developer in Model.Developer)
+                {
+                    <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
+                }
 
-        </select><br />
+            </select><br />
+        }
+
 
         <label for="Id_publisher">Укажите издателя:</label> <br />
-        <select name="Id_publisher">
-            @foreach (var publisher in Model.Publisher)
-            {
-                <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
+        @if (Model.Publisher.Count() <= 0)
+        {
+            <label style="color:red">Данные о и в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
+        }
+        else
+        {
+            <select name="Id_publisher">
+                @foreach (var publisher in Model.Publisher)
+                {
+                    <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
+                }
 
-            }
+            </select>
+        }
 
-        </select>
 
-        <div>
+        @*<div>
             <a href="~/Games/AddGenresForGame">Добавить жанры к игре</a>
-        </div>
+        </div>*@
 
         <div>
             <div>
-                <input type="submit" id="button" value="Добавить" />
+                <input type="submit" id="button" value="Продолжить" />
             </div>
         </div>
         <h3>@ViewData["MessageAddGames"]</h3>

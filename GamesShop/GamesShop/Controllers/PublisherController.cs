@@ -21,6 +21,16 @@ namespace GamesShop.Controllers
             return View(db.Publisher.ToList());
         }
 
+        [HttpGet]
+        public IActionResult PublisherViewGames(int id)
+        {
+            var listGames = db.Games.Include(v => v.IdPublisherNavigation).Where(x => x.IdPublisher == id);
+
+            Console.WriteLine("ID DEVELOPER: " + id);
+            return View(listGames.ToList());
+        }
+
+
         public IActionResult AddPublisher( string NameOfPublisher, string linkToTheWebSute)
         {
             int IdPublisher = 0;

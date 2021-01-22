@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GamesShop.Models.Orders>
+
+    <header>
+        <form asp-controller="Order" asp-action="ListOrdersOfAdmin" method="post">
+            Введите почту покупателя для поиска:
+            <input type="text" name="SearchString" />
+            <input type="submit" value="Найти" />
+        </form>
+    </header>
+<h3>История заказов</h3>
+<div>
+   <table>
+      <tr>
+          <td>Id заказа</td>
+          <td>Покупатель</td>
+          <td> Дата заказа:</td>
+          <td>Цена заказа</td>
+      </tr> 
+       @foreach(var order in Model){
+       <tr>
+           <td>@order.IdOrder</td>
+           <td>@order.email</td>
+           <td>@order.DateOfZakaz</td>
+           <td>@order.Price</td>
+           
+           <td><a asp-controller="Order" asp-action="DetailOrderOfUser" asp-route-id="@order.IdOrder">Посмотреть детали</a></td>
+       </tr>
+       }
+   </table>
+</div>

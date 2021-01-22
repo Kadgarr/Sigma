@@ -48,10 +48,10 @@ namespace GamesShop.Controllers
             return RedirectToAction("CartView");
         }
 
-        public RedirectToActionResult removeFromCart(int id)
+        public RedirectToActionResult removeFromCart(string id)
         {
 
-            var item = db.ShopCartItem.FirstOrDefault(i => i.id == id);
+            var item = db.ShopCartItem.FirstOrDefault(i => i.ShopCartId == id);
 
             if (item != null)
             {

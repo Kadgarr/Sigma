@@ -14,25 +14,26 @@
         </tr>
         @foreach (var publisher in Model)
         {
-            <tr>
-                <td>
-                    @publisher.NameOfIzdatel
-                </td>
-                <td>
-                    @publisher.LinkToTheWebSite
-                </td>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <td>
-                        <a asp-controller="Publisher" asp-action="EditPublisher" asp-route-id="@publisher.IdPublisher">Редактировать</a>
-                    </td>
-                    <td>
-                        <form method="post">
-                            <button type="submit" asp-action="PublisherList" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher">Удалить</button>
-                        </form>
-                    </td>
-                }
-            </tr>
+    <tr>
+      
+        <td> <a asp-action="PublisherViewGames" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher"> @publisher.NameOfIzdatel</a>
+        </td>
+       
+        <td>
+            @publisher.LinkToTheWebSite
+        </td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td>
+                <a asp-controller="Publisher" asp-action="EditPublisher" asp-route-id="@publisher.IdPublisher">Редактировать</a>
+            </td>
+            <td>
+                <form method="post">
+                    <button type="submit" asp-action="PublisherList" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher">Удалить</button>
+                </form>
+            </td>
+        }
+    </tr>
         }
 
     </table>

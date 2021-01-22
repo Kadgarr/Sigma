@@ -27,7 +27,7 @@
 
 
         <div>
-            <image src="@Model.Image"></image>
+            <image src="@Model.Image" />
         </div>
 
 
@@ -38,10 +38,10 @@
 
         <label asp-for="GenresGames"> Жанры игры:</label>
         <div>
-           @foreach(var genre in Model.GenresGames)
-           {
-               @genre.IdGenreNavigation.NameOfGenre
-           }
+            @foreach (var genre in Model.GenresGames)
+            {
+                @genre.IdGenreNavigation.NameOfGenre
+            }
         </div>
 
 
@@ -67,28 +67,36 @@
 
         <label asp-for="Cost"> Цена:</label>
         <div>
-            <input asp-for="Cost" readonly="readonly" />
+            <input asp-for="Cost" readonly="readonly" /> грн
+        </div>
+        <div>
+            @if (Model.CountOfKeys <= 0)
+            {
+                <label style="color:red">Ожидается поставка</label><br />
+            }
+            else
+            {
+                <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.IdGame">
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            }
         </div>
 
-        <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.IdGame">
-            <button type="submit">Добавить в корзину</button>
-        </form>
-
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <label>Оставьте свой отзыв:</label>
-            <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame">
-                <textarea type="text" name="textFeedback">
-            </textarea>
-                <button type="submit">Добавить отзыв</button>
-            </form>
-        }
-        else
-        {
-            <label>Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
-        }
-
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <label>Оставьте свой отзыв:</label>
+                <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame">
+                    <textarea type="text" name="textFeedback">
+                </textarea>
+                    <button type="submit">Добавить отзыв</button>
+                </form>
+            }
+            else
+            {
+                <label>Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
+            }
+        </div>
 
 
     </div>

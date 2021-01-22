@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Games>
+
+
+<div>
+    @foreach(var name in Model)
+    {
+        <h3>Игры @name.IdPublisherNavigation.NameOfIzdatel</h3>
+        break;
+    }
+<table>
+    <tr>
+        Название игры
+    </tr>
+    <tr>
+        Дата выхода
+    </tr>
+
+    @foreach (var games in Model)
+    {
+        <tr>
+            <td>
+                <img src="@games.Image" /> 
+            </td>
+            <td>
+                <a asp-action="GameView" asp-controller="Games" asp-route-id="@games.IdGame"> @games.NameOfGame</a>
+            </td>
+            <td>
+                @games.DateOfRelease
+            </td>
+
+        </tr>
+    }
+</table>
+</div>

@@ -8,7 +8,8 @@ namespace GamesShop.Models
 {
     public class SomeModelsGenreGame
     {
-        public IEnumerable<Games> Game { get; set; }
+        public Games Game { get; set; }
+
         public IEnumerable<Genre> Genre { get; set; }
     }
 }

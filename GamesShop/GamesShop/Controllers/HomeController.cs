@@ -23,10 +23,18 @@ namespace GamesShop.Controllers
 
         public IActionResult Index()
         {
+            
             return View(db.Developer.ToList());
         }
 
+        [HttpGet]
+        public IActionResult DeveloperViewGames(int id)
+        {
+            var listGames = db.Games.Include(v => v.IdDeveloperNavigation).Where(x => x.IdDeveloper == id);
 
+            Console.WriteLine("ID DEVELOPER: " + id);
+            return View(listGames.ToList());
+        }
         [HttpGet]
         public IActionResult AddDeveloper(int? id)
         {

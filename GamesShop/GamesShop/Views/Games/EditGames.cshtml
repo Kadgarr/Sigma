@@ -29,15 +29,15 @@
                 </div>
             </div>
             <div>
-                <label asp-for="Image"></label>
-                <div>
-                    <input asp-for="Image" />
-                </div>
+                <label asp-for="Image">  Выберите изображение:</label>
+                <input type="file" asp-for="Image" /><br>
             </div>
+            
+
             <div>
                 <label asp-for="DateOfRelease"> Дата выхода:</label>
                 <div>
-                    <input asp-for="DateOfRelease" type="date" />
+                    <input asp-for="DateOfRelease" />
                 </div>
             </div>
             <div>
@@ -46,6 +46,7 @@
                     <input asp-for="Cost" />
                 </div>
             </div>
+
             <div>
                 <label asp-for="CountOfKeys"> Число ключей:</label>
                 <div>
@@ -55,7 +56,7 @@
             <div>
                 <label asp-for="Description"> Описание игры:</label>
                 <div>
-                    <textarea asp-for="Description" > </textarea>
+                    <textarea asp-for="Description"> </textarea>
                 </div>
             </div>
 
@@ -76,10 +77,10 @@
 
                 }
 
-            </select> 
+            </select>
 
             <div>
-                <a asp-action="AddGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Добавить жанры к игре</a>
+                <a asp-action="EditGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Добавить жанры</a>
             </div>
             <div>
                 <a asp-action="DeleteGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Удалить жанры к игре</a>
@@ -91,11 +92,12 @@
                 </div>
             </div>
 
-
-
-
         </form>
-
+        <form asp-action="AddEmage" asp-controller="Games" method="post" enctype="multipart/form-data">
+            Загрузить изображение
+            
+            <input type="submit" value="Загрузить" />
+        </form>
         <h3>@ViewData["MessageEdit"]</h3>
 
 

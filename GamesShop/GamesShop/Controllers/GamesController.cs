@@ -7,19 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GamesShop.Controllers
 {
     public class GamesController : Controller
     {
         GamesShopDB_Context db;
-
+        IWebHostEnvironment _appEnvironment;
         UserManager<User> _userManager;
        
-        public GamesController(GamesShopDB_Context context, UserManager<User> _userManager)
+        public GamesController(GamesShopDB_Context context, UserManager<User> _userManager, IWebHostEnvironment appEnvironment)
         {
             db = context;
             this._userManager = _userManager;
+            _appEnvironment = appEnvironment;
+
         }
 
         [HttpGet]
@@ -45,11 +50,15 @@ namespace GamesShop.Controllers
                     IdGame = db.Games.Max(p => p.IdGame + 1);
                 }
                 
-                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image = Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher, Description=Description };
+                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image ="/Images/" +Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher, Description=Description };
                 // Добавление
                
                 db.Games.Add(game);
                 db.SaveChanges();
+                var modgame = db.Games.FirstOrDefault(x => x.IdGame == game.IdGame);
+                Console.WriteLine("ID GAME POST: "+ modgame.NameOfGame);
+                ViewData["MessageAddGames"] = "Запись '" + IdGame + " " + NameOfGame + "  " + DateOfRelease + " " + Cost + " " + CountOfKeys + "' была успешно добавлена!";
+                return RedirectToAction("AddGenresForGame", modgame );
             }
 
             var model = new SomeModels()
@@ -58,30 +67,30 @@ namespace GamesShop.Controllers
                 Publisher = db.Publisher.AsEnumerable(),
             };
 
-            ViewData["MessageAddGames"] = "Запись '" + IdGame + " " + NameOfGame + " " + Image + " "+DateOfRelease+" "+Cost+" "+ CountOfKeys +" " + IdDeveloper+"' была успешно добавлена!";
+            
 
-            return View(model);
+            return RedirectToAction("AddGenresForGame", IdGame);
         }
 
         [HttpGet]
         public IActionResult ListGames()
         {
-            return View(db.Games.ToList());
+            return View(db.Games.OrderByDescending(x=>x.CountOfKeys));
         }
 
 
         [HttpGet]
-        public IActionResult AddGenresForGame(int id)
+        public async Task<IActionResult> AddGenresForGame(Games id)
         {
+            Console.WriteLine("ID GAME GET: " + id.IdGame);
             var model = new SomeModelsGenreGame()
             {
-                Game = db.Games.AsEnumerable().Where(x=> x.IdGame==id),
+                Game = await db.Games.FirstOrDefaultAsync(x => x.IdGame == id.IdGame),
                 Genre = db.Genre.AsEnumerable()
             };
             
             return View(model);
         }
-
         [HttpPost]
         public IActionResult AddGenresForGame(int Id_game, int Id_genre)
         {
@@ -92,22 +101,66 @@ namespace GamesShop.Controllers
                 {
                     Id_recording = db.GenresGames.Max(p => p.id_recording + 1);
                 }
-                GenresGame genregame = new GenresGame { id_recording = Id_recording, IdGame = Id_game, IdGenre= Id_genre };
+                GenresGame genregame = new GenresGame { id_recording = Id_recording, IdGame = Id_game, IdGenre = Id_genre };
                 // Добавление
                 db.GenresGames.Add(genregame);
                 db.SaveChanges();
             }
 
-            
+
             var model = new SomeModelsGenreGame()
             {
-                Game = db.Games.AsEnumerable(),
+                Game = db.Games.FirstOrDefault(x => x.IdGame == Id_game),
                 Genre = db.Genre.AsEnumerable()
             };
             ViewData["MessageAddGenresGames"] = "Запись '" + Id_game + " " + Id_genre + "' была успешно добавлена!";
             return View(model);
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditGenresForGame(int id)
+        {
+           
+            var model = new SomeModelsGenreGame()
+            {
+                Game = await db.Games.FirstOrDefaultAsync(x => x.IdGame == id),
+                Genre = db.Genre.AsEnumerable()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditGenresForGame(int Id_game, int Id_genre)
+        {
+            using (GamesShopDB_Context db = new GamesShopDB_Context())
+            {
+                int Id_recording = 1;
+                if (db.GenresGames.Count() != 0)
+                {
+                    Id_recording = db.GenresGames.Max(p => p.id_recording + 1);
+                }
+                GenresGame genregame = new GenresGame { id_recording = Id_recording, IdGame = Id_game, IdGenre = Id_genre };
+                // Добавление
+                db.GenresGames.Add(genregame);
+                db.SaveChanges();
+            }
+
+
+            var model = new SomeModelsGenreGame()
+            {
+                Game = db.Games.FirstOrDefault(x => x.IdGame == Id_game),
+                Genre = db.Genre.AsEnumerable()
+            };
+            ViewData["MessageAddGenresGames"] = "Запись '" + Id_game + " " + Id_genre + "' была успешно добавлена!";
+            return View(model);
+
+        }
+
+
+
+
 
         [HttpGet]
         public IActionResult DeleteGenresForGame(int id)
@@ -161,9 +214,9 @@ namespace GamesShop.Controllers
             game.IdGame = gamemod.IdGame;
             game.IdPublisher = gamemod.Publishers;
             game.IdDeveloper = gamemod.Developers;
-            game.Image = gamemod.Image;
+            game.Image = "/Images/"+gamemod.Image;
             game.Cost = gamemod.Cost;
-            game.CountOfKeys = game.CountOfKeys;
+            game.CountOfKeys = gamemod.CountOfKeys;
             game.DateOfRelease = gamemod.DateOfRelease;
             game.Description = gamemod.Description;
             game.NameOfGame = gamemod.NameOfGame;
@@ -174,6 +227,10 @@ namespace GamesShop.Controllers
             ViewData["MessageEditGame"] = "Запись '" + game.IdGame + " " + game.NameOfGame +  "' была успешно отредактирована!";
             return RedirectToAction("ListGames");
         }
+
+       
+
+
 
         [HttpPost]
         //[ActionName("DeleteGame")]
