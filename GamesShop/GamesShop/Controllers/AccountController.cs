@@ -43,7 +43,7 @@ namespace GamesShop.Controllers
                     
                     await _signInManager.SignInAsync(user, false);
                     await RoleInitializer.InitializeUserAsync(user, _userManager, _roleManager);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListGames", "Games");
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace GamesShop.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ListGames", "Games");
                     }
                 }
                 else
@@ -104,7 +104,7 @@ namespace GamesShop.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListGames", "Games");
         }
 
 

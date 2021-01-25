@@ -14,7 +14,7 @@ namespace GamesShop.Models
         public GamesShopDB_Context(DbContextOptions<GamesShopDB_Context> options)
             : base(options)
         {
-           //Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -55,13 +55,13 @@ namespace GamesShop.Models
                 entity.HasOne(d => d.IdGameNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.IdGame)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Content_of_order_ToTable_1");
 
                 entity.HasOne(d => d.IdOrderNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.IdOrder)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_Content_of_order_ToTable");
             });
             modelBuilder.Entity<GenresGame>(entity =>

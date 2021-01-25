@@ -21,11 +21,11 @@
                     }грн
                 </b>
             </div>
-            <form asp-action="removeFromCart" asp-controller="Cart" asp-route-id="@item.id">
-                <button type="submit">Удалить из корзины</button>
+            <form asp-action="removeFromCart" asp-controller="Cart" asp-route-id="@item.ShopCartId">
+                <button class="btn btn-danger" type="submit">Удалить из корзины</button>
             </form>
         }
-        Общая стоимость:
+        Общая стоимость: <b>
         @{
             int summ = 0;
             foreach (var item in Model.Cart.listShopItems)
@@ -33,15 +33,15 @@
                 summ += item.game.Cost;
             }
             @summ
-        } грн.
+        } грн.</b>
 
         @if (User.IsInRole("user") || User.IsInRole("admin"))
         {
-            <a asp-controller="Order" asp-action="CheckoutAutorize" asp-route-name="@User.Identity.Name">Оплатить</a>
+            <a class="btn btn-warning" asp-controller="Order" asp-action="CheckoutAutorize" asp-route-name="@User.Identity.Name">Оплатить</a>
         }
         else
         {
-            <a asp-controller="Order" asp-action="Checkout">Оплатить</a>
+            <a class="btn btn-warning" asp-controller="Order" asp-action="Checkout">Оплатить</a>
         }
 
     </div>

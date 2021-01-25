@@ -6,117 +6,160 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px; background-color: #D3D3D3; color: dimgrey">
     Добро пожаловать на сайт @User.Identity.Name !
     <!--меню-->
     <header>
-
-        <nav class="navbar navbar-expand-sm bg-light justify-content-around">
-            GamesShop
-
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                <ul class="navbar-nav text-center">
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index">Разработчики</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="~/Home/Index">Список разработчиков</a>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a class="dropdown-item" href="~/Home/AddDeveloper">Добавление разработчиков</a>
-                            }
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Publisher/PublisherList">Издатели</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="~/Publisher/PublisherList">Список издателей</a>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a class="dropdown-item" href="~/Publisher/AddPublisher">Добавление издателей</a>
-                            }
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Games/ListGames">Игры</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="~/Games/ListGames">Список игр</a>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a class="dropdown-item" href="~/Games/AddGames">Добавление игр</a>
-                            }
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Genre/GenreList">Жанры</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="~/Genre/GenreList">Список жанров</a>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a class="dropdown-item" href="~/Genre/AddGenre">Добавление жанров</a>
-                            }
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        @*<a href="~/Roles/UserList">Список пользователей</a>*@
-                        @if (User.IsInRole("admin"))
-                        {
-                            <a class="nav-link" href="~/Roles/UserList">Список пользователей</a>
-                        }
-                    </li>
-                    <li class="nav-item">
-                        @*<a href="~/Roles/UserList">Список пользователей</a>*@
-                        @if (User.IsInRole("admin"))
-                        {
-                            <a class="nav-link" href="~/Order/ListOrdersOfAdmin">Заказы</a>
-                        }
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Cart/CartView">Корзина</a>
-                    </li>
-                    <li class="nav-item">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="nav-link" href="~/Account/Logout">Выход</a>
-                        }
-                        else
-                        {
-                            <a class="nav-link" href="~/Account/Login">Вход</a>
-                        }
-
-                    </li>
-                    <li class="nav-item">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a class="nav-link" asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name">Профиль</a>
-                        }
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Account/Register">Регистрация</a>
-                    </li>
-
-                </ul>
-                <form asp-controller="Games" asp-action="ListGames" method="post">
-                    Поиск:
-                    <input type="text" name="SearchString" />
-                    <input type="submit" value="Найти" />
-                </form>
-
-            </div>
-
-        </nav>
     </header>
+    <nav class="navbar navbar-expand-sm bg-dark justify-content-around" style="color:white">
+        <a class="text-white" style="text-decoration:none" href="~/Games/ListGames" > GamesShop </a>
+
+        <div class="collapse navbar-collapse justify-content-center " id="navbarNavDropdown"  >
+            <ul class="navbar-nav text-center ">
+
+                <li class="nav-item dropdown"  >
+                    <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index"style="color:lightgray">Разработчики</a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" >
+                        <a class="dropdown-item" href="~/Home/Index">Список разработчиков</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="dropdown-item" href="~/Home/AddDeveloper">Добавление разработчиков</a>
+                        }
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Publisher/PublisherList"style="color:lightgray">Издатели</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="~/Publisher/PublisherList">Список издателей</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="dropdown-item" href="~/Publisher/AddPublisher">Добавление издателей</a>
+                        }
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Games/ListGames" style="color:lightgray">Игры</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="~/Games/ListGames">Список игр</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="dropdown-item" href="~/Games/AddGames">Добавление игр</a>
+                        }
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Genre/GenreList" style="color:lightgray">Жанры</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="~/Genre/GenreList">Список жанров</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="dropdown-item" href="~/Genre/AddGenre">Добавление жанров</a>
+                        }
+                    </div>
+                </li>
+                <li class="nav-item">
+                    @*<a href="~/Roles/UserList">Список пользователей</a>*@
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="nav-link" href="~/Roles/UserList" style="color:lightgray">Список пользователей</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    @*<a href="~/Roles/UserList">Список пользователей</a>*@
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="nav-link" href="~/Order/ListOrdersOfAdmin" style="color:lightgray">Заказы</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Cart/CartView" style="color:lightgray">Корзина</a>
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" href="~/Account/Logout" style="color:lightgray">Выход</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" href="~/Account/Login" style="color:lightgray">Вход</a>
+                    }
+
+                </li>
+                <li class="nav-item">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name" style="color:lightgray">Профиль</a>
+                    }
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Account/Register" style="color:lightgray">Регистрация</a>
+                </li>
+
+            </ul>
+            <form asp-controller="Games" asp-action="ListGames" method="post" class="form-inline">
+                Поиск:
+                <input class="form-control mr-sm-2" type="text" name="SearchString" aria-label="Search" />
+                <input  class="btn btn-outline-info my-1 my-sm-0" type="submit" value="Найти" />
+            </form>
+
+        </div>
+
+    </nav>
 
     <!--основной контент-->
-    <div class="container align-content-center ">
+    <div class="container-fluid">
 
-        @RenderBody()
+        <div class="row ">
+          
+            <div class="col">
+                <nav class="navbar bg-light " style=" margin-left: 150px;margin-top:100px; ">
+
+                    <ul class="navbar-nav" style="height:auto; ">
+                        <div style="font-size:130%;">Жанры:</div> 
+                        @using (GamesShopDB_Context db = new GamesShopDB_Context())
+                        {
+                            @foreach (var genre in db.Genre)
+                            {
+                                <li class="nav-item">
+                                    <a style="text-decoration:none" asp-action="GenreViewGames" asp-controller="Genre" asp-route-id="@genre.IdGenre"> @genre.NameOfGenre</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="col-6">    @RenderBody() </div>
+            <div class="col w-25">
+                <nav class="navbar bg-light " style=" margin-right: 150px; margin-top:100px; ">
+
+                    <!-- Links -->
+                    <ul class="navbar-nav" style="height:auto;">
+                        <div style="font-size:130%;">Разработчики:</div>
+                        @using (GamesShopDB_Context db = new GamesShopDB_Context())
+                        {
+                            @foreach (var developer in db.Developer)
+                            {
+                                <li class="nav-item">
+                                    <a style="text-decoration:none" asp-action="DeveloperViewGames" asp-controller="Home" asp-route-id="@developer.IdDeveloper"> @developer.NameOfDeveloper</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+
+                </nav>
+
+            </div>
+        </div>
         <hr />
 
     </div>
+  
     <footer>
-        <p>© 2021 - GameShop</p>
+                <p>© 2021 - GameShop</p>
     </footer>
 
 

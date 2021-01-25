@@ -50,9 +50,9 @@ namespace GamesShop.Controllers
 
         public RedirectToActionResult removeFromCart(string id)
         {
-
-            var item = db.ShopCartItem.FirstOrDefault(i => i.ShopCartId == id);
-
+            Console.WriteLine("ID Cart: " + id);
+            var item = db.ShopCartItem.FirstOrDefault(I=>I.ShopCartId==id);
+            Console.WriteLine("ID ITEM: " + item.ShopCartId);
             if (item != null)
             {
                 cart.RemoveFromCart(item);

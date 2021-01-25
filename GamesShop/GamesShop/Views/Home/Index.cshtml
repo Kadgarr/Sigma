@@ -14,24 +14,27 @@
 <body>
     <h3> Список разработчиков </h3>
  
-    <table class="table-condensed">
+    <table class="table  table-striped">
         <tr>
-            <td> Id разработчика</td>
-            <td> Название кампании</td>
-            <td> Ссылка на сайт</td>
+            <th class="table-dark"> Название кампании</th>
+            <th class="table-dark"> Ссылка на сайт</th>
+            @if (User.IsInRole("admin"))
+            {
+                <th class="table-dark"> </th>
+                <th class="table-dark"> </th>
+            }
         </tr>
         @foreach (var developer in Model)
         {
     <tr>
-        <td> <a asp-action="DeveloperViewGames" asp-controller="Home" asp-route-id="@developer.IdDeveloper"> @developer.NameOfDeveloper</a></td>
-        <td> @developer.NameOfDeveloper</td>
-        <td><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
+        <td  class="table-primary"> <a asp-action="DeveloperViewGames" asp-controller="Home" asp-route-id="@developer.IdDeveloper"> @developer.NameOfDeveloper</a></td>
+        <td class="table-primary"><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
         @if (User.Identity.IsAuthenticated)
         {
-            <td><a asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
-            <td>
+            <td class="table-primary"><a class="btn btn-link" asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
+            <td  class="table-primary">
                 <form method="post">
-                    <button type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
+                    <button class="btn btn-danger"type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>
                 </form>
             </td>
         }

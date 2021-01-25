@@ -3,33 +3,40 @@
 <h3>Список издателей</h3>
 <div>
     @ViewData["MessageDeletePublisher"]
-    <table>
+    <table class="table  table-striped">
         <tr>
-            <td>
+            <th class="table-dark">
                 Название издателя:
-            </td>
-            <td>
+            </th>
+            <th class="table-dark">
                 Ссылка на сайт:
-            </td>
+            </th>
+            @if (User.IsInRole("admin"))
+            {
+                <th class="table-dark"> </th>
+                <th class="table-dark"> </th>
+            }
+
         </tr>
         @foreach (var publisher in Model)
         {
     <tr>
       
-        <td> <a asp-action="PublisherViewGames" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher"> @publisher.NameOfIzdatel</a>
+        <td class="table-primary">
+            <a asp-action="PublisherViewGames" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher"> @publisher.NameOfIzdatel</a>
         </td>
        
-        <td>
+        <td class="table-primary">
             @publisher.LinkToTheWebSite
         </td>
         @if (User.Identity.IsAuthenticated)
         {
-            <td>
-                <a asp-controller="Publisher" asp-action="EditPublisher" asp-route-id="@publisher.IdPublisher">Редактировать</a>
+            <td class="table-primary">
+                <a class="btn btn-info"asp-controller="Publisher" asp-action="EditPublisher" asp-route-id="@publisher.IdPublisher">Редактировать</a>
             </td>
-            <td>
+            <td class="table-primary">
                 <form method="post">
-                    <button type="submit" asp-action="PublisherList" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher">Удалить</button>
+                    <button class="btn btn-danger"type="submit" asp-action="PublisherList" asp-controller="Publisher" asp-route-id="@publisher.IdPublisher">Удалить</button>
                 </form>
             </td>
         }

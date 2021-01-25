@@ -3,25 +3,27 @@
     <header>
         <form asp-controller="Order" asp-action="ListOrdersOfAdmin" method="post">
             Введите почту покупателя для поиска:
-            <input type="text" name="SearchString" />
-            <input type="submit" value="Найти" />
+            <input type="text" name="SearchString" class="form-control mr-sm-2" style="width: 50%"/>
+            <input type="submit" value="Найти" class="btn btn-info my-1 my-sm-0"/>
         </form>
     </header>
 <h3>История заказов</h3>
 <div>
-   <table>
-      <tr>
-          <td>Id заказа</td>
-          <td>Покупатель</td>
-          <td> Дата заказа:</td>
-          <td>Цена заказа</td>
-      </tr> 
+   <table class="table table-bordered table-striped">
+
+       <tr>
+           <th scope="col">Id заказа</th>
+           <th scope="col">Покупатель</th>
+           <th scope="col"> Дата заказа:</th>
+           <th scope="col">Цена заказа</th>
+           <th scope="col"></th>
+       </tr> 
        @foreach(var order in Model){
        <tr>
            <td>@order.IdOrder</td>
            <td>@order.email</td>
            <td>@order.DateOfZakaz</td>
-           <td>@order.Price</td>
+           <td>@order.Price грн</td>
            
            <td><a asp-controller="Order" asp-action="DetailOrderOfUser" asp-route-id="@order.IdOrder">Посмотреть детали</a></td>
        </tr>

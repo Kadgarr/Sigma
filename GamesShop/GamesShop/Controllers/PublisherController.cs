@@ -30,7 +30,15 @@ namespace GamesShop.Controllers
             return View(listGames.ToList());
         }
 
+        [HttpGet]
+        public IActionResult AddPublisher()
+        {
+            
 
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult AddPublisher( string NameOfPublisher, string linkToTheWebSute)
         {
             int IdPublisher = 0;

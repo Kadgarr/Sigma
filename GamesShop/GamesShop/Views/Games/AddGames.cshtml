@@ -26,7 +26,7 @@
         <div>
             <div>
                 <label for="Image">  Выберите изображение:</label><br />
-                <input type="file" for="Image" /><br>
+                <input type="file" name="Image" /><br>
             </div>
         </div>
         <div>
@@ -74,7 +74,7 @@
         <label for="Id_publisher">Укажите издателя:</label> <br />
         @if (Model.Publisher.Count() <= 0)
         {
-            <label style="color:red">Данные о и в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
+            <label style="color:red">Данные о издателях в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
         }
         else
         {
@@ -87,17 +87,24 @@
             </select>
         }
 
-
+        @if (Model.Publisher.Count() <= 0 || Model.Developer.Count() <= 0)
+        {
+            <label style="color:red">Данные о издателях или о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись, чтобы была возможность добавить игру в базу данных.</label><br />
+        }
+        else
+        {
+            <div>
+                <div>
+                    <input type="submit" id="button" value="Продолжить" />
+                </div>
+            </div>
+            <h3>@ViewData["MessageAddGames"]</h3>
+        }
         @*<div>
             <a href="~/Games/AddGenresForGame">Добавить жанры к игре</a>
         </div>*@
 
-        <div>
-            <div>
-                <input type="submit" id="button" value="Продолжить" />
-            </div>
-        </div>
-        <h3>@ViewData["MessageAddGames"]</h3>
+
     </form>
 
 </body>

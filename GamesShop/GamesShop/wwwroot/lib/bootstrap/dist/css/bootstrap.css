@@ -4,6 +4,8 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -52,7 +54,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
     nav.navbar .dropdown:hover > .dropdown-menu {
+
         display: block;
+        background-color: aquamarine;
     } 
 
 body {
@@ -156,14 +160,14 @@ sup {
 }
 
 a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
+    color: #6B8E23;
+    text-decoration: none;
+    background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #0000FF;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -549,11 +553,11 @@ pre code {
 }
 
 .container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 @media (min-width: 576px) {
@@ -4773,6 +4777,7 @@ input[type="button"].btn-block {
     width: 100%;
   }
 }
+
 
 .accordion > .card {
   overflow: hidden;
@@ -9908,12 +9913,15 @@ a.text-light:hover, a.text-light:focus {
 }
 
 .text-dark {
-  color: #343a40 !important;
+  color: #343a40;
 }
 
-a.text-dark:hover, a.text-dark:focus {
-  color: #121416 !important;
+.text-dark:hover{
+    color: #00FFFF ;
 }
+/*a.text-dark:hover*//*, a.text-dark:focus*/ /*{
+    color: #00FFFF ;
+}*/
 
 .text-body {
   color: #212529 !important;

@@ -50,26 +50,57 @@ namespace GamesShop.Controllers
                     IdGame = db.Games.Max(p => p.IdGame + 1);
                 }
                 
-                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image ="/Images/" +Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher, Description=Description };
+                Games game = new Games { IdGame = IdGame, NameOfGame = NameOfGame, Image ="/Images/" + Image, DateOfRelease = DateOfRelease.Date, Cost = Cost, CountOfKeys = CountOfKeys, IdDeveloper = IdDeveloper, IdPublisher = Id_publisher, Description=Description };
                 // Добавление
-               
+                
                 db.Games.Add(game);
                 db.SaveChanges();
                 var modgame = db.Games.FirstOrDefault(x => x.IdGame == game.IdGame);
-                Console.WriteLine("ID GAME POST: "+ modgame.NameOfGame);
+                Console.WriteLine("ID GAME IMAGE: "+ modgame.Image);
                 ViewData["MessageAddGames"] = "Запись '" + IdGame + " " + NameOfGame + "  " + DateOfRelease + " " + Cost + " " + CountOfKeys + "' была успешно добавлена!";
                 return RedirectToAction("AddGenresForGame", modgame );
             }
 
-            var model = new SomeModels()
+           
+        }
+
+
+        [HttpGet]
+
+        public async Task<IActionResult> EditGames(int? id)
+        {
+
+            Games game = await db.Games.FirstOrDefaultAsync(x => x.IdGame == id);
+
+            if (game == null)
             {
-                Developer = db.Developer.AsEnumerable(),
-                Publisher = db.Publisher.AsEnumerable(),
-            };
+                return NotFound();
+            }
+            var model = new EditGameModel()
+            { IdGame = game.IdGame, Image = game.Image, NameOfGame = game.NameOfGame, Cost = game.Cost, CountOfKeys = game.CountOfKeys, DateOfRelease = game.DateOfRelease, Description = game.Description, Developers = game.IdDeveloper, Publishers = game.IdPublisher, Developer = db.Developer.AsEnumerable(), Publisher = db.Publisher.AsEnumerable() };
+            return View(model);
+        }
 
-            
 
-            return RedirectToAction("AddGenresForGame", IdGame);
+        [HttpPost]
+        public async Task<IActionResult> EditGames(EditGameModel gamemod)
+        {
+            Games game = await db.Games.FirstOrDefaultAsync(x => x.IdGame == gamemod.IdGame);
+            game.IdGame = gamemod.IdGame;
+            game.IdPublisher = gamemod.Publishers;
+            game.IdDeveloper = gamemod.Developers;
+            game.Image = "/Images/" + gamemod.Image;
+            game.Cost = gamemod.Cost;
+            game.CountOfKeys = gamemod.CountOfKeys;
+            game.DateOfRelease = gamemod.DateOfRelease;
+            game.Description = gamemod.Description;
+            game.NameOfGame = gamemod.NameOfGame;
+
+            Console.WriteLine("EditGame: " + gamemod.IdGame + gamemod.Publishers);
+            db.Games.Update(game);
+            await db.SaveChangesAsync();
+            ViewData["MessageEditGame"] = "Запись '" + game.IdGame + " " + game.NameOfGame + "' была успешно отредактирована!";
+            return RedirectToAction("ListGames");
         }
 
         [HttpGet]
@@ -188,49 +219,6 @@ namespace GamesShop.Controllers
 
             return View(modelgame);
         }
-
-
-        [HttpGet]
-       
-        public async Task<IActionResult> EditGames(int? id)
-        {
-          
-            Games game = await db.Games.FirstOrDefaultAsync(x=>x.IdGame==id);
-
-            if (game == null)
-            {
-                return NotFound();
-            }
-            var model = new EditGameModel()
-            { IdGame = game.IdGame, Image = game.Image, NameOfGame = game.NameOfGame, Cost = game.Cost, CountOfKeys = game.CountOfKeys, DateOfRelease = game.DateOfRelease, Description = game.Description, Developers = game.IdDeveloper, Publishers = game.IdPublisher, Developer=db.Developer.AsEnumerable(),Publisher=db.Publisher.AsEnumerable() };
-            return View(model);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> EditGames(EditGameModel gamemod)
-        {
-            Games game = await db.Games.FirstOrDefaultAsync(x => x.IdGame == gamemod.IdGame);
-            game.IdGame = gamemod.IdGame;
-            game.IdPublisher = gamemod.Publishers;
-            game.IdDeveloper = gamemod.Developers;
-            game.Image = "/Images/"+gamemod.Image;
-            game.Cost = gamemod.Cost;
-            game.CountOfKeys = gamemod.CountOfKeys;
-            game.DateOfRelease = gamemod.DateOfRelease;
-            game.Description = gamemod.Description;
-            game.NameOfGame = gamemod.NameOfGame;
-
-            Console.WriteLine("EditGame: " +gamemod.IdGame + gamemod.Publishers);
-            db.Games.Update(game);
-            await db.SaveChangesAsync();
-            ViewData["MessageEditGame"] = "Запись '" + game.IdGame + " " + game.NameOfGame +  "' была успешно отредактирована!";
-            return RedirectToAction("ListGames");
-        }
-
-       
-
-
 
         [HttpPost]
         //[ActionName("DeleteGame")]

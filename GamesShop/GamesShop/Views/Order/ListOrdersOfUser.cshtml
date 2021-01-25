@@ -2,12 +2,13 @@
 
 <h3>История заказов</h3>
 <div>
-   <table>
-      <tr>
-          <td>Id заказа</td>
-          <td> Дата заказа:</td>
-          <td>Цена заказа</td>
-      </tr> 
+   <table class="table table-bordered table-striped">
+       <tr>
+           <th scope="col">Id заказа</th>
+           <th scope="col"> Дата заказа:</th>
+           <th scope="col">Цена заказа</th>
+           <th scope="col"></th>
+       </tr> 
        @foreach(var order in Model){
        <tr>
            <td>@order.IdOrder</td>

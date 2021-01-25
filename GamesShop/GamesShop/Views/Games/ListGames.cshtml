@@ -5,52 +5,50 @@
     ViewData["Title"] = "GamesShop";
 
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Магазин компьютерных игр</title>
+  
+        <div class="card-columns " style="margin-top:25px;">
+            @foreach (var games in Model)
+            {
+
+                <div class="card">
+                    <img class="card-img-top" src="@games.Image" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Дата выхода: @Html.DisplayFor(modelItem => games.DateOfRelease)<br />
+                            Цена: @games.Cost грн
+                        </p>
+                        <b><a style="text-decoration:none; font-size:130%" asp-action="GameView" asp-controller="Games" asp-route-id="@games.IdGame"> @games.NameOfGame</a><br /></b> 
+                        @if (games.CountOfKeys <= 0)
+                        {
+                            <label style="color:red">Ожидается поставка</label><br />
+                        }
+                        else
+                        {
+                            <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@games.IdGame">
+                                <button class="btn btn-warning " type="submit">Добавить в корзину</button>
+                            </form>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="text-info" style="text-decoration:none" asp-action="EditGames" asp-controller="Games" asp-route-id="@games.IdGame">Редактировать</a>
+                        }
+
+                        @if (User.IsInRole("admin"))
+                        {
+
+                            <form asp-controller="Games" asp-action="DeleteGame" asp-route-id="@games.IdGame" method="post">
+                                <button class="btn btn-danger" type="submit">
+                                    Удалить
+                                </button>
+                            </form>
+
+                        }
+                    </div>
+
+                </div>
+
+            }
+        </div>
+
     
-</head>
-<body>
 
-    <h3> Список игр </h3>
-   
-    <table class="table-condensed">
-        <tr>
-            <td></td>
-            <td> Название игры:</td>
-            <td> Дата Релиза:</td>
-            
-        </tr> 
-        @foreach (var games in Model)
-        {
-    <tr>
-        <td><div  visibility:hidden">@games.IdGame</div></td>
-        <td><img src="@games.Image" alt="@games.Image"></td>
-        <td><a asp-action="GameView" asp-controller="Games" asp-route-id="@games.IdGame"> @games.NameOfGame</a></td>
-        <td>@Html.DisplayFor(modelItem => games.DateOfRelease) </td>
-        <td> @games.Cost грн</td>
-        @if (User.IsInRole("admin"))
-        {
-            <td><a asp-action="EditGames" asp-controller="Games" asp-route-id="@games.IdGame">Редактировать</a></td>
-        }
-
-        @if (User.IsInRole("admin"))
-        {
-            <td>
-                <form asp-controller="Games" asp-action="DeleteGame" asp-route-id="@games.IdGame" method="post">
-                    <button type="submit">
-                        Удалить
-                    </button>
-                </form>
-            </td>
-        }
-    </tr>
-        }
-
-    </table>
-
-    
-
-</body>
-</html>
