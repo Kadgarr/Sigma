@@ -9,97 +9,85 @@
 </head>
 <body>
     <h3>Форма добавления игры</h3>
-    <form method="post">
+    <form method="post" class="form-group">
 
         <div>
-
-            <div>
-                <input type="hidden" name="IdGame" />
-            </div>
-        </div>
-        <div>
+              <input type="hidden" name="IdGame" />
+         </div>
+        <div class="form-group">
             <label for="NameOfGame">  Название игры:</label>
-            <div>
-                <input type="text" name="NameOfGame" />
-            </div>
-        </div>
-        <div>
+                <input type="text" name="NameOfGame" class="form-control" style="width: 50%"/>
+        </div >
             <div>
                 <label for="Image">  Выберите изображение:</label><br />
-                <input type="file" name="Image" /><br>
+                <input type="file" name="Image"  style="width: 50%"/><br>
             </div>
-        </div>
-        <div>
+        <div class="form-group">
             <label for="DateOfRelease">  Дата релиза:</label>
-            <div>
-                <input type="date" name="DateOfRelease" />
-            </div>
+             <input type="date" name="DateOfRelease" class="form-control"style="width: 50%" />
         </div>
-        <div>
+        <div class="form-group">
             <label for="Cost">  Цена игры:</label>
-            <div>
-                <input type="text" name="Cost" />
-            </div>
+                <input type="text" name="Cost" class="form-control" style="width: 50%"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="CountOfKeys">  Количество ключей:</label>
-            <div>
-                <input type="text" name="CountOfKeys" />
-            </div>
+                <input type="text" name="CountOfKeys" class="form-control" style="width: 50%"/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="Description">  Описание:</label>
-            <div>
-                <textarea type="text" name="Description"></textarea>
-            </div>
+                <textarea type="text" name="Description" class="form-control" style="width:100%; height:200px;"></textarea>
         </div>
 
-        <label for="Id_developer">Укажите разработчика:</label> <br />
-        @if (Model.Developer.Count() <= 0)
-        {
-            <label style="color:red">Данные о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
-        }
-        else
-        {
-            <select name="Id_developer">
-                @foreach (var developer in Model.Developer)
-                {
-                    <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
-                }
+        <div class="form-group">
+            <label for="Id_developer">Укажите разработчика:</label> <br />
+            @if (Model.Developer.Count() <= 0)
+            {
+                <label style="color:red">Данные о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
+            }
+            else
+            {
+                <select name="Id_developer" class="form-control" style="width: 50%">
+                    @foreach (var developer in Model.Developer)
+                    {
+                        <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
+                    }
 
-            </select><br />
-        }
+                </select><br />
+            }
+        </div>
+       
 
+        <div class="form-group">
+            <label for="Id_publisher">Укажите издателя:</label> <br />
+            @if (Model.Publisher.Count() <= 0)
+            {
+                <label style="color:red">Данные о издателях в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
+            }
+            else
+            {
+                <select name="Id_publisher" class="form-control" style="width: 50%">
+                    @foreach (var publisher in Model.Publisher)
+                    {
+                        <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
+                    }
 
-        <label for="Id_publisher">Укажите издателя:</label> <br />
-        @if (Model.Publisher.Count() <= 0)
-        {
-            <label style="color:red">Данные о издателях в базе данных отсутсвуют. Добавьте хотя бы одну запись.</label><br />
-        }
-        else
-        {
-            <select name="Id_publisher">
-                @foreach (var publisher in Model.Publisher)
-                {
-                    <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
-                }
+                </select>
+            }
 
-            </select>
-        }
-
-        @if (Model.Publisher.Count() <= 0 || Model.Developer.Count() <= 0)
-        {
-            <label style="color:red">Данные о издателях или о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись, чтобы была возможность добавить игру в базу данных.</label><br />
-        }
-        else
-        {
-            <div>
-                <div>
-                    <input type="submit" id="button" value="Продолжить" />
-                </div>
-            </div>
-            <h3>@ViewData["MessageAddGames"]</h3>
-        }
+            @if (Model.Publisher.Count() <= 0 || Model.Developer.Count() <= 0)
+            {
+                <label style="color:red">Данные о издателях или о разработчиках в базе данных отсутсвуют. Добавьте хотя бы одну запись, чтобы была возможность добавить игру в базу данных.</label><br />
+            }
+            else
+            {
+                
+               <input class="btn btn-primary" type="submit" id="button" value="Продолжить" />
+             
+                <h3>@ViewData["MessageAddGames"]</h3>
+            }
+        </div>
+       
         @*<div>
             <a href="~/Games/AddGenresForGame">Добавить жанры к игре</a>
         </div>*@

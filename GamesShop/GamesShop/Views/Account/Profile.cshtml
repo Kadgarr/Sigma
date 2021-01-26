@@ -1,32 +1,33 @@
 ﻿@model GamesShop.Models.User
 @{
-    
+    ViewData["Title"] = "GamesShop";
 }
-    <h3>Личный кабинет <label asp-for="UserName">@Model.UserName</label></h3>
-    <form asp-action="Profile" method="post">
-        <div asp-validation-summary="All">
-            <div>
-                <input type="hidden" asp-for="Id" class=""/>
-            </div>
-         
 
-            <div class="form-group">
-                <label asp-for="Email" >Email</label><br />
-                <input type="text" asp-for="Email" class="form-control" style="width:50%"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="Year">Дата рождения</label><br />
-                <input type="date" asp-for="Year"class="form-control" style="width:50%" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ID_Card" >Id карты:</label><br />
-                <input type="text" asp-for="ID_Card" class="form-control" style="width:50%"/>
-            </div>
-            <div >
-                <input class="btn btn-primary" type="submit" value="Сохранить изменения" />
-            </div>
+<h3>Личный кабинет <label asp-for="UserName">@Model.UserName</label></h3>
+<form asp-action="Profile" method="post">
+    <div asp-validation-summary="All">
+        <div>
+            <input type="hidden" asp-for="Id" class="" />
         </div>
-    </form>
-    <a asp-controller="Order" asp-action="ListOrdersOfUser" asp-route-name="@User.Identity.Name"> Просмотреть историю заказов</a>
 
-    <a asp-controller="FeedBack" asp-action="ViewFeedback" asp-route-name="@User.Identity.Name"> Просмотреть оставленные отзывы</a>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label><br />
+            <input type="text" asp-for="Email" class="form-control" style="width:50%" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Year">Дата рождения</label><br />
+            <input type="date" asp-for="Year" class="form-control" style="width:50%" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ID_Card">Id карты:</label><br />
+            <input type="text" asp-for="ID_Card" class="form-control" style="width:50%" />
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Сохранить изменения" />
+        </div>
+    </div>
+</form>
+<a asp-controller="Order" asp-action="ListOrdersOfUser" asp-route-name="@User.Identity.Name"> Просмотреть историю заказов</a>
+
+<a asp-controller="FeedBack" asp-action="ViewFeedback" asp-route-name="@User.Identity.Name"> Просмотреть оставленные отзывы</a>

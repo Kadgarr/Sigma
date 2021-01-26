@@ -17,9 +17,9 @@
         <div class="collapse navbar-collapse justify-content-center " id="navbarNavDropdown"  >
             <ul class="navbar-nav text-center ">
 
-                <li class="nav-item dropdown"  >
-                    <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index"style="color:lightgray">Разработчики</a>
-                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" >
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Home/Index" style="color:lightgray">Разработчики</a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="~/Home/Index">Список разработчиков</a>
                         @if (User.IsInRole("admin"))
                         {
@@ -28,7 +28,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Publisher/PublisherList"style="color:lightgray">Издатели</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="~/Publisher/PublisherList" style="color:lightgray">Издатели</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="~/Publisher/PublisherList">Список издателей</a>
                         @if (User.IsInRole("admin"))
@@ -92,9 +92,13 @@
                         <a class="nav-link" asp-controller="Account" asp-action="Profile" asp-route-name="@User.Identity.Name" style="color:lightgray">Профиль</a>
                     }
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="~/Account/Register" style="color:lightgray">Регистрация</a>
-                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Account/Register" style="color:lightgray">Регистрация</a>
+                    </li>
+                }
+
 
             </ul>
             <form asp-controller="Games" asp-action="ListGames" method="post" class="form-inline">

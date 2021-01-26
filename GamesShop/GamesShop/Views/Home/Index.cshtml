@@ -31,7 +31,7 @@
         <td class="table-primary"><a href="@developer.LinkToTheWebSite">@developer.LinkToTheWebSite</a> </td>
         @if (User.Identity.IsAuthenticated)
         {
-            <td class="table-primary"><a class="btn btn-link" asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
+            <td class="table-primary"><a class="btn btn-info"asp-action="EditDeveloper" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Редактировать</a> </td>
             <td  class="table-primary">
                 <form method="post">
                     <button class="btn btn-danger"type="submit" asp-action="Index" asp-controller="Home" asp-route-id="@developer.IdDeveloper">Удалить</button>

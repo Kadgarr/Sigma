@@ -1,6 +1,6 @@
 ﻿@model GamesShop.Models.Developer
 @{
-    ViewData["Title"] = "Редактирование записи разработчика";
+    ViewData["Title"] = "GamesShop";
 }
 
 <!DOCTYPE html>
@@ -13,30 +13,22 @@
         <h3>Форма редактирования разработчика @*@Model.NameOfDeveloper*@</h3>
 
 
-        <form method="post">
+        <form method="post" class="form-group">
             <div asp-validation-summary="All">
-                <div>
+                <div class="form-group">
                     <label asp-for="IdDeveloper">  Id разработчика:</label>
-                    <div class="col-md-4">
-                        <input asp-for="IdDeveloper" readonly="readonly" />
-                    </div>
+                    <input asp-for="IdDeveloper" readonly="readonly" class="form-control" style="width:50%" />
                 </div>
-                <div>
+                <div class="form-group">
                     <label asp-for="NameOfDeveloper">  Название разработчика:</label>
-                    <div class="col-md-4">
-                        <input asp-for="NameOfDeveloper" />
-                    </div>
+                    <input asp-for="NameOfDeveloper" class="form-control" style="width:50%" />
                 </div>
-                <div>
+                <div class="form-group">
                     <label asp-for="LinkToTheWebSite"> Ссылка на веб сайт:</label>
-                    <div class="col-md-4">
-                        <input asp-for="LinkToTheWebSite" />
-                    </div>
+                    <input asp-for="LinkToTheWebSite" class="form-control" style="width:50%" />
                 </div>
                 <div>
-                    <div>
-                        <input type="submit" id="button" value="Применить изменения" />
-                    </div>
+                    <input class="btn btn-primary" type="submit" id="button" value="Применить изменения" />
                 </div>
             </div>
 
@@ -44,7 +36,7 @@
         </form>
 
         <h3>@ViewData["MessageEdit"]</h3>
-      
+
 
 
     </div>

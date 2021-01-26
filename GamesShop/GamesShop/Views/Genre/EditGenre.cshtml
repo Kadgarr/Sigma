@@ -2,23 +2,24 @@
 
 <h3>Форма редактирования издателя</h3>
 <div>
-    <form asp-action="EditGenre" asp-controller="Genre" method="post">
-        <div>
+    <form asp-action="EditGenre" asp-controller="Genre" method="post" class="form-group">
+        <div class="form-group">
             <label asp-for="@Model.IdGenre">Id жанра</label>
-            <input asp-for="@Model.IdGenre" readonly="readonly" />
+            <input asp-for="@Model.IdGenre" readonly="readonly" class="form-control" style="width:50%" />
 
         </div>
-        <div>
+        <div class="form-group">
             <label asp-for="@Model.NameOfGenre"> Название жанра</label>
-            <input asp-for="@Model.NameOfGenre" />
+            <input asp-for="@Model.NameOfGenre" class="form-control" style="width:50%" />
 
         </div>
-        <div>
-            <label asp-for="@Model.DescriptionOfGenre"> Ссылка на сайт</label>
-            <input asp-for="@Model.DescriptionOfGenre" /> 
+        <div class="form-group">
+            <label asp-for="@Model.DescriptionOfGenre"> Описание</label>
+            <textarea asp-for="@Model.DescriptionOfGenre" class="form-control" style="width:100%; height:200px;"> </textarea>
 
         </div>
 
-        <button type="submit">Подтвердить изменения</button>
+        <button class="btn btn-primary" type="submit">Подтвердить изменения</button>
     </form>
+    @ViewData["MessageEditGenre"]
 </div>

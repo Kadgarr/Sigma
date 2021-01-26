@@ -9,14 +9,14 @@
 </head>
 <body>
     <h2>Список ролей</h2>
-    <table class="table">
+    <table class="table  table-striped">
         @foreach (var role in Model)
         {
             <tr>
-                <td>@role.Name</td>
-                <td>
-                    <form asp-action="DeleteRoles" asp-route-id="@role.Id" method="post">
-                        <button type="submit">
+                <td class="table-dark">@role.Name</td>
+                <td  class="table-primary">
+                    <form asp-action="DeleteRoles" asp-route-id="@role.Id" method="post" class="form-group">
+                        <button class="btn btn-danger" type="submit">
                             Удалить
                         </button>
                     </form>

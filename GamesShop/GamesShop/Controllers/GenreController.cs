@@ -76,7 +76,7 @@ namespace GamesShop.Controllers
         {
             db.Attach(genre).State = EntityState.Modified;
             db.SaveChanges();
-            ViewData["MessageEdit"] = "Запись была успешно отредактирована!";
+            ViewData["MessageEditGenre"] = "Запись была успешно отредактирована!";
             return View();
         }
 

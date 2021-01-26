@@ -4,21 +4,21 @@
         <h3>Оформление заказа для пользователя @Model.Users.UserName  @Model.Users.Id   </h3>
         <form asp-action="CheckoutAutorize" asp-controller="Order" method="post">
 
-            <div>
+            <div class="form-group">
                 <label asp-for="@Model.Users.UserName"></label>
-                <input asp-for="@Model.Users.UserName" value="@Model.Users.UserName" />
+                <input asp-for="@Model.Users.UserName" value="@Model.Users.UserName" class="form-control"/>
 
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="@Model.Users.Email"></label>
-                <input asp-for="@Model.Users.Email" value="@Model.Users.Email" />
+                <input asp-for="@Model.Users.Email" value="@Model.Users.Email" class="form-control"/>
                 <span asp-validation-for="@Model.Users.Email"></span>
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="@Model.Users.ID_Card"></label>
-                <input asp-for="@Model.Users.ID_Card" />
+                <input asp-for="@Model.Users.ID_Card" class="form-control"/>
             </div>
 
-            <input type="submit" value="Завершить заказ" />
+            <input class="btn btn-warning"  type="submit" value="Завершить заказ" />
         </form>
     </div>

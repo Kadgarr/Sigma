@@ -8,102 +8,97 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Редактирование информации о игре</title>
 </head>
 <body>
-    <div>
-        <h3>@Model.NameOfGame</h3>
-
-
-        <div>
-            <input asp-for="IdGame" readonly="readonly" hidden="hidden" />
-        </div>
-
-
-        <label asp-for="NameOfGame">  Название игры:</label>
-        <div>
-            @Model.NameOfGame;
-        </div>
-
-
-        <div>
-            <image src="@Model.Image" />
-        </div>
-
-
-        <label asp-for="DateOfRelease"> Дата выхода:</label>
-        <div>
-            @Model.DateOfRelease
-        </div>
-
-        <label asp-for="GenresGames"> Жанры игры:</label>
-        <div>
-            @foreach (var genre in Model.GenresGames)
-            {
-                @genre.IdGenreNavigation.NameOfGenre
-            }
-        </div>
-
-
-        <label asp-for="Description"> Описание игры:</label>
-        <div>
-            @Model.Description
-        </div>
-
-        <label asp-for="IdDeveloperNavigation.NameOfDeveloper"> Разработчик:</label>
-        <div>
-            @Model.IdDeveloperNavigation.NameOfDeveloper
-        </div>
-
-        @if (User.IsInRole("admin"))
-        {
-            <label asp-for="CountOfKeys"> Количество ключей:</label>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">  @Model.NameOfGame</h5>
             <div>
-                @Model.CountOfKeys
+                <image src="@Model.Image" />
             </div>
-        }
-
-
-
-        <label asp-for="Cost"> Цена:</label>
-        <div>
-            <input asp-for="Cost" readonly="readonly" /> грн
         </div>
-        <div>
-            @if (Model.CountOfKeys <= 0)
-            {
-                <label style="color:red">Ожидается поставка</label><br />
-            }
-            else
-            {
-                <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.IdGame">
-                    <button type="submit">Добавить в корзину</button>
-                </form>
-            }
-        </div>
+            <div class="card-body">
+                <input asp-for="IdGame" readonly="readonly" hidden="hidden" />
+               
 
-        <div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <label>Оставьте свой отзыв:</label>
-                <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame">
-                    <textarea type="text" name="textFeedback">
-                </textarea>
-                    <button type="submit">Добавить отзыв</button>
-                </form>
-            }
-            else
-            {
-                <label>Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
-            }
-        </div>
+                <h5 class="card-title"> Дата выхода:</h5>
+                <div>
+                    <b>@Html.DisplayFor(modelitem => Model.DateOfRelease)</b>
+                </div>
+
+                <h5 class="card-title"> Жанры игры:</h5>
+                <div>
+                    @foreach (var genre in Model.GenresGames)
+                    {
+                    <b>@genre.IdGenreNavigation.NameOfGenre</b>  <br/>
+                    }
+                </div>
+
+
+                <h5 class="card-title"> Описание игры:</h5>
+                <p class="card-text">
+                    @Model.Description
+                </p>
+
+                <h5 class="card-title"> Разработчик:</h5>
+                <div>
+                    <b>@Model.IdDeveloperNavigation.NameOfDeveloper</b>
+                </div>
+
+                @if (User.IsInRole("admin"))
+                {
+                    <label asp-for="CountOfKeys"> Количество ключей:</label>
+                    <div>
+                        @Model.CountOfKeys
+                    </div>
+                }
+
+
+                <h5 class="card-title"> Цена:</h5>
+                <div>
+                    <b>@Model.Cost грн.</b>
+                </div>
+                <div>
+                    @if (Model.CountOfKeys <= 0)
+                    {
+                        <label style="color:red">Ожидается поставка</label><br />
+                    }
+                    else
+                    {
+                        <form asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.IdGame">
+                            <button class="btn btn-warning" type="submit">Добавить в корзину</button>
+                        </form>
+                    }
+                </div>
+            </div>
 
 
     </div>
 
+
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <label><b>Оставьте свой отзыв:</b></label>
+            <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame" class="form-group">
+                <div class="form-group">
+                    <textarea type="text" name="textFeedback">
+                </textarea>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Добавить отзыв</button>
+                </div>
+                
+            </form>
+        }
+        else
+        {
+            <label style="color:orange">Чтобы добавить отзыв, пожалуйста, авторизируйтесь на сайте</label>
+        }
+    </div>
     <div>
         <label asp-for="Feedbacks"> Отзывы:</label>
-        <div>
+        @*<div>
             <table>
                 <tr>
                     <td>
@@ -118,7 +113,7 @@
                 </tr>
                 @foreach (var feedback in @Model.Feedbacks)
                 {
-                   
+
                     <tr>
                         <td>
                             @feedback.IdUserNavigation.UserName
@@ -127,13 +122,24 @@
                             @Html.DisplayFor(modelitem => feedback.DateOfFeedback)
                         </td>
                         <td>
-                           @feedback.TextOfFeedback
+                            @feedback.TextOfFeedback
                         </td>
                     </tr>
                 }
             </table>
-           
-        </div>
+
+        </div>*@
+
+        @foreach (var feedback in Model.Feedbacks)
+        {
+            <div class="card-header">
+                 @feedback.IdUserNavigation.UserName
+            </div>
+            <div class="card-body">
+                <p > <b>@Html.DisplayFor(modelitem => feedback.DateOfFeedback)</b></p>
+                <p class="card-text" style="background-color: white">  @feedback.TextOfFeedback</p>
+            </div>
+        }
     </div>
 </body>
 </html>
