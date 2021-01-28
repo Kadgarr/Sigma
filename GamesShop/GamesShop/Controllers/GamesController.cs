@@ -93,8 +93,8 @@ namespace GamesShop.Controllers
             game.Cost = gamemod.Cost;
             game.CountOfKeys = gamemod.CountOfKeys;
             game.DateOfRelease = gamemod.DateOfRelease;
-            game.Description = gamemod.Description;
             game.NameOfGame = gamemod.NameOfGame;
+            game.Description = gamemod.Description;
 
             Console.WriteLine("EditGame: " + gamemod.IdGame + gamemod.Publishers);
             db.Games.Update(game);
@@ -122,6 +122,7 @@ namespace GamesShop.Controllers
             
             return View(model);
         }
+
         [HttpPost]
         public IActionResult AddGenresForGame(int Id_game, int Id_genre)
         {
@@ -148,6 +149,8 @@ namespace GamesShop.Controllers
             return View(model);
 
         }
+
+      
 
         [HttpGet]
         public async Task<IActionResult> EditGenresForGame(int id)
@@ -256,9 +259,9 @@ namespace GamesShop.Controllers
            
             var games = db.Games.Where(s => s.NameOfGame.StartsWith(SearchString));
 
-            if (games == null)
+            if (games.Count() == 0)
             {
-
+                return View("NotFoundGames");
             }
             return View(games.ToList());
             

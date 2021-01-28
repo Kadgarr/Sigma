@@ -4,13 +4,15 @@
 }
 
 <h3>Личный кабинет <label asp-for="UserName">@Model.UserName</label></h3>
-<form asp-action="Profile" method="post">
+<form  method="post">
     <div asp-validation-summary="All">
         <div>
-            <input type="hidden" asp-for="Id" class="" />
+            <input type="hidden" asp-for="Id" />
         </div>
-
-
+        <div class="form-group">
+            <label asp-for="UserName">UserName</label><br />
+            <input type="text" asp-for="UserName" class="form-control" style="width:50%" />
+        </div>
         <div class="form-group">
             <label asp-for="Email">Email</label><br />
             <input type="text" asp-for="Email" class="form-control" style="width:50%" />
@@ -27,6 +29,7 @@
             <input class="btn btn-primary" type="submit" value="Сохранить изменения" />
         </div>
     </div>
+    @ViewData["MsgSaveEditUser"]
 </form>
 <a asp-controller="Order" asp-action="ListOrdersOfUser" asp-route-name="@User.Identity.Name"> Просмотреть историю заказов</a>
 

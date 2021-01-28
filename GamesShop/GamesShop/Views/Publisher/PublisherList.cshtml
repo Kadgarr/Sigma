@@ -27,8 +27,8 @@
         </td>
        
         <td class="table-primary">
-            @publisher.LinkToTheWebSite
-        </td>
+            <a href="@publisher.LinkToTheWebSite"> @publisher.LinkToTheWebSite</a>
+            </td>
         @if (User.Identity.IsAuthenticated)
         {
             <td class="table-primary">

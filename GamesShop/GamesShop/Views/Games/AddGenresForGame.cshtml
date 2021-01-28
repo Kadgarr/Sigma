@@ -15,7 +15,7 @@
 
             }
         </select><br />*@
-       <input name="Id_game" value="@Model.Game.IdGame" hidden="hidden"> 
+        <input name="Id_game" value="@Model.Game.IdGame" hidden="hidden">
         @Model.Game.NameOfGame<br />
         Выберите жанры для игры:
         <select name="Id_genre">
@@ -31,7 +31,7 @@
 
         @ViewData["MessageAddGenresGames"]
 
-
     </form>
+    <a class="btn btn-primary" href="~/Games/ListGames">Завершить</a>
 </body>
 </html>

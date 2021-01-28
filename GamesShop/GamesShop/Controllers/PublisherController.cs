@@ -34,12 +34,11 @@ namespace GamesShop.Controllers
         public IActionResult AddPublisher()
         {
             
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddPublisher( string NameOfPublisher, string linkToTheWebSute)
+        public IActionResult AddPublisher( string NameOfPublisher, string LinkToTheWebSite)
         {
             int IdPublisher = 0;
             using (GamesShopDB_Context db = new GamesShopDB_Context())
@@ -50,7 +49,7 @@ namespace GamesShop.Controllers
                     IdPublisher = db.Publisher.Max(p => p.IdPublisher + 1);
                 }
 
-                Publisher pub = new Publisher { IdPublisher= IdPublisher, NameOfIzdatel=NameOfPublisher, LinkToTheWebSite=linkToTheWebSute  };
+                Publisher pub = new Publisher { IdPublisher= IdPublisher, NameOfIzdatel=NameOfPublisher, LinkToTheWebSite= LinkToTheWebSite };
                 // Добавление
                 db.Publisher.Add(pub);
                 db.SaveChanges();
@@ -68,9 +67,13 @@ namespace GamesShop.Controllers
             {
                 Publisher pub =  db.Publisher.FirstOrDefault(p => p.IdPublisher == id);
                 if (pub != null)
+                {
+                   
                     return View(pub);
+                }
+                   
             }
-
+          
             return NotFound();
         }
 

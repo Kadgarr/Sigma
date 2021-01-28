@@ -100,7 +100,10 @@ namespace GamesShop.Controllers
         public IActionResult GenreViewGames(int id)
         {
             var listGames = db.GenresGames.Include(v => v.IdGameNavigation).Include(b=>b.IdGenreNavigation).Where(x => x.IdGenre == id);
-            
+            if (listGames.Count() == 0)
+            {
+                return View("NotFoundGenre");
+            }
             return View(listGames.ToList());
         }
     }

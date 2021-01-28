@@ -138,7 +138,6 @@ namespace GamesShop.Controllers
         [HttpPost]
         public async Task<IActionResult> EditRoles(string userId, /*List<string> roles*/ List<string> roleId)
         {
-
             try
             {
                 using (GamesShopDB_Context db = new GamesShopDB_Context())

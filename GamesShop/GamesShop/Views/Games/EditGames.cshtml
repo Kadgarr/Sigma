@@ -14,54 +14,42 @@
         <h3>Форма редактирования игры</h3>
 
 
-        <form method="post">
+        <form method="post" class="form-group">
 
-            <div>
+            <div class="form-group">
                 <label asp-for="IdGame">  Id игры:</label>
-                <div class="col-md-4">
-                    <input asp-for="IdGame" readonly="readonly" />
-                </div>
+                    <input asp-for="IdGame" readonly="readonly" class="form-control" style="width:50%"/>
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="NameOfGame">  Название игры:</label>
-                <div>
-                    <input asp-for="NameOfGame" />
-                </div>
+                    <input asp-for="NameOfGame"  class="form-control" style="width:50%"/>
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="Image">  Выберите изображение:</label>
-                <input type="file" asp-for="Image" /><br>
+                <input type="file" asp-for="Image"  class="form-control" style="width:50%"/><br>
             </div>
             
 
-            <div>
+            <div class="form-group">
                 <label asp-for="DateOfRelease"> Дата выхода:</label>
-                <div>
-                    <input asp-for="DateOfRelease" />
-                </div>
+                    <input asp-for="DateOfRelease"  class="form-control" style="width:50%"/>
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="Cost"> Цена:</label>
-                <div>
-                    <input asp-for="Cost" />
-                </div>
+                    <input asp-for="Cost"  class="form-control" style="width:50%"/>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label asp-for="CountOfKeys"> Число ключей:</label>
-                <div>
-                    <input asp-for="CountOfKeys" />
-                </div>
+                    <input asp-for="CountOfKeys"  class="form-control" style="width:50%"/>
             </div>
-            <div>
+            <div class="form-group">
                 <label asp-for="Description"> Описание игры:</label>
-                <div>
-                    <textarea asp-for="Description"> </textarea>
-                </div>
+                    <textarea asp-for="Description" class="form-control" style="width:200%"> </textarea>
             </div>
 
             Укажите разработчика:
-            <select asp-for="Developers">
+            <select asp-for="Developers"  class="form-control" style="width:50%">
                 @foreach (var developer in Model.Developer)
                 {
                     <option value="@developer.IdDeveloper">@developer.NameOfDeveloper</option>
@@ -70,7 +58,7 @@
             </select><br />
 
             Укажите издателя:
-            <select asp-for="Publishers">
+            <select asp-for="Publishers"  class="form-control" style="width:50%">
                 @foreach (var publisher in Model.Publisher)
                 {
                     <option value="@publisher.IdPublisher">@publisher.NameOfIzdatel</option>
@@ -79,25 +67,20 @@
 
             </select>
 
-            <div>
-                <a asp-action="EditGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Добавить жанры</a>
+            <div class="form-group">
+                <a class="btn btn-warning" asp-action="EditGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Добавить жанры</a>
             </div>
-            <div>
-                <a asp-action="DeleteGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Удалить жанры к игре</a>
+            <div class="form-group">
+                <a class="btn btn-warning"asp-action="DeleteGenresForGame" asp-controller="Games" asp-route-id="@Model.IdGame">Удалить жанры к игре</a>
             </div>
 
-            <div>
-                <div>
-                    <input type="submit" id="button" value="Применить изменения" />
-                </div>
+            <div class="form-group">
+               
+                    <input class="btn btn-primary" type="submit" id="button" value="Применить изменения" />
             </div>
 
         </form>
-        <form asp-action="AddEmage" asp-controller="Games" method="post" enctype="multipart/form-data">
-            Загрузить изображение
-            
-            <input type="submit" value="Загрузить" />
-        </form>
+       
         <h3>@ViewData["MessageEdit"]</h3>
 
 

@@ -54,7 +54,6 @@ namespace GamesShop.Controllers
         [HttpGet]
         public IActionResult CheckoutAutorize(string name)
         {
-
             var model = new SomeRoleOrders()
             {
                 Users = db.Users.FirstOrDefault(x=>x.UserName==name)
@@ -100,7 +99,7 @@ namespace GamesShop.Controllers
                     DateOfZakaz = DateTime.Now,
                     email = order.email,
                     IdUser = order.IdUser,
-                    Price = order.Price
+                    Price = summ
 
                 };
                 db.Orders.Add(orders);
@@ -117,7 +116,8 @@ namespace GamesShop.Controllers
                     var content_of_order = new ContentOfOrder()
                     {
                         IdGame = el.game.IdGame,
-                        id_recording = id_recording_content
+                        id_recording = id_recording_content,
+                        IdOrder = orders.IdOrder
 
                     };
 
@@ -137,7 +137,12 @@ namespace GamesShop.Controllers
                     db.ContentOfOrders.Add(content_of_order);
                     db.SaveChanges();
                 }
-                
+
+                foreach (var sh in shopCart.listShopItems)
+                {
+                    var shcart = db.ShopCartItem.FirstOrDefault(x => x.ShopCartId == sh.ShopCartId);
+                    shopCart.RemoveFromCart(shcart);
+                }
 
                 return RedirectToAction("Complete");
             }

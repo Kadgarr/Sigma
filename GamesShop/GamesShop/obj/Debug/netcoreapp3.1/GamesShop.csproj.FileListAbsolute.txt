@@ -116,3 +116,7 @@ C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Publisher\PublisherViewGames.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Order\ListOrdersOfAdmin.cshtml.g.cs
 C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\EditGenresForGame.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\bin\Debug\netcoreapp3.1\Web.config
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Genre\NotFoundGenre.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\NotFoundDeveloper.cshtml.g.cs
+C:\Users\MAXIM\source\repos\Sigma\Sigma\GamesShop\GamesShop\obj\Debug\netcoreapp3.1\Razor\Views\Games\NotFoundGames.cshtml.g.cs

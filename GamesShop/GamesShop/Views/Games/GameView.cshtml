@@ -82,7 +82,7 @@
             <label><b>Оставьте свой отзыв:</b></label>
             <form asp-action="AddFeedback" asp-controller="Games" asp-route-id="@Model.IdGame" class="form-group">
                 <div class="form-group">
-                    <textarea type="text" name="textFeedback">
+                    <textarea type="text" name="textFeedback" class="form-control" style="width:50%">
                 </textarea>
                 </div>
                 <div>

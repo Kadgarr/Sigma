@@ -31,7 +31,10 @@ namespace GamesShop.Controllers
         public IActionResult DeveloperViewGames(int id)
         {
             var listGames = db.Games.Include(v => v.IdDeveloperNavigation).Where(x => x.IdDeveloper == id);
-
+            if (listGames.Count() == 0)
+            {
+                return View("NotFoundDeveloper");
+            }
             Console.WriteLine("ID DEVELOPER: " + id);
             return View(listGames.ToList());
         }
